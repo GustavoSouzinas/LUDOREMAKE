@@ -1,0 +1,18 @@
+.flex{
+    display: flex;
+
+    margin-top: 400px;
+
+    justify-content: center;
+
+}
+
+.rotate{
+display: flex;
+width: 300px;
+height: auto;
+
+transform: rotate(90deg);
+transform-origin: center;
+
+}

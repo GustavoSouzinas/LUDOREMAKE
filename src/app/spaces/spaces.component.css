@@ -1,0 +1,19 @@
+.parentBox{
+    display: flex;
+    width: 300px;
+    height: auto;
+    border: 1px solid black;
+}
+
+.grid{
+
+    display: grid;
+    grid-template-rows: repeat(6, 110px);
+    width: 100px;
+}
+
+.space{
+
+    width: 100px;
+    border: 1px solid black;
+}
