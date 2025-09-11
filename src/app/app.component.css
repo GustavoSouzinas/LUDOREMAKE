@@ -1,18 +1,76 @@
-.flex{
+.flexRow{
+
+    height: 155px;
     display: flex;
-
-    margin-top: 400px;
-
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
 
 }
 
-.rotate{
-display: flex;
-width: 300px;
-height: auto;
+.flexCol{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.rotate{
 transform: rotate(90deg);
 transform-origin: center;
+}
 
+.board{
+    position: relative;
+
+    margin: auto;
+
+    height: 800px;
+    width: 800px;
+
+    border: 1px solid black;
+}
+
+
+.X_container{
+    position: relative;
+    width: 220px;
+    height: 220px;
+}
+
+.line{
+
+    position: absolute;
+    width: 220px;
+    height: 2px;
+    background-color: black;
+    transform-origin: center;
+    top: 50%;
+}
+
+.line1{
+transform: rotate(45deg);
+}
+
+.line2{
+transform: rotate(-45deg);
+}
+
+
+.top{
+    top: 0px;
+    margin-top: 50px;
+}
+
+.bottom{
+    bottom: 0px;
+    margin-bottom: 50px;
+}
+
+.left{
+    left: 0px;
+    margin-left: 50px;
+}
+
+.right{
+    right: 0px;
+    margin-right: 50px;
 }

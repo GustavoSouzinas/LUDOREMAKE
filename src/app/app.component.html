@@ -1,4 +1,26 @@
 
-,<div class="flex">
-    <app-spaces class="rotate"></app-spaces>
-</div>
+
+   <div class="board flexCol">
+
+        <app-circle-pieces class="top left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces class="top right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces class="bottom left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces class="bottom right" style="position: absolute;"></app-circle-pieces>
+
+        <div class="flexCol" style="align-items: center;" >
+            <app-spaces></app-spaces>
+        </div>
+
+        <div class="flexRow">
+            <app-spaces class="rotate" style="padding-right: 0px; transform: rotate(90deg) translateY(-25.5%);"></app-spaces>
+                <div class="X_container">
+                    <div class="line line1"></div> 
+                    <div class="line line2"></div>       
+                </div>
+            <app-spaces class="rotate" style="padding-left: 0px; transform: rotate(90deg) translateY(25.5%)"></app-spaces>
+        </div>
+
+         <div class="flexCol" style="margin-top: 0px; align-items: center;">
+            <app-spaces></app-spaces>
+        </div>
+    </div>
