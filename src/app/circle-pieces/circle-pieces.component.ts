@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-circle-pieces',
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './circle-pieces.component.css'
 })
 export class CirclePiecesComponent {
+
+  @Input() color = '';
 
 }

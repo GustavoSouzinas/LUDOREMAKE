@@ -10,7 +10,7 @@
 .playercircle{
 
     position: absolute;
-
+    background-color: white;
     border: 1px solid black;
     border-radius: 50%;
     height: 60px;

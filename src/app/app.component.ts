@@ -11,4 +11,8 @@ import { CirclePiecesComponent } from "./circle-pieces/circle-pieces.component";
 })
 export class AppComponent {
   title = 'LUDOREMAKE';
+  player1_Color = "green"
+  player2_Color = "yellow"
+  player3_Color = "orange"
+  player4_Color = "blue"
 }

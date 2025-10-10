@@ -2,10 +2,10 @@
 
    <div class="board flexCol">
 
-        <app-circle-pieces class="top left" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces class="top right" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces class="bottom left" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces class="bottom right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player1_Color" class="top left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player2_Color" class="top right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player3_Color" class="bottom left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player4_Color" class="bottom right" style="position: absolute;"></app-circle-pieces>
 
         <div class="flexCol" style="align-items: center;" >
             <app-spaces></app-spaces>
