@@ -12,15 +12,10 @@ export class SpacesComponent implements OnInit {
 
 
 
-
 spaces: {id: number, row: number, col: number }[] = []
 
 ngOnInit(): void {
- this.createSpaces()
-  
-  
-  
-;
+ this.createSpaces();
 }
 
 createSpaces(){
