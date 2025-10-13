@@ -1,11 +1,12 @@
 <div class="parentBox">
     <div class="grid">
-        <div class="space" *ngFor="let space of spaces"></div>
+        <div [style.background-color]="spaces_color" class="space" *ngFor="let space of spaces"></div>
     </div>
     <div class="grid">
-        <div class="space" *ngFor="let space of spaces"></div>
+        <div [style.background-color]="spaces_color" class="space"></div>
+        <div  class="space" *ngFor="let space of middle_spaces"></div>
     </div>
     <div class="grid">
-        <div class="space" *ngFor="let space of spaces"></div>
+        <div [style.background-color]="spaces_color" class="space" *ngFor="let space of spaces"></div>
     </div>
 </div>

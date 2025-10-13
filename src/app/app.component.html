@@ -8,19 +8,22 @@
         <app-circle-pieces [color]="player4_Color" class="bottom right" style="position: absolute;"></app-circle-pieces>
 
         <div class="flexCol" style="align-items: center;" >
-            <app-spaces></app-spaces>
+            <app-spaces [spaces_color]="player2_Color"></app-spaces>
         </div>
-
+    
         <div class="flexRow">
-            <app-spaces class="rotate" style="padding-right: 0px; transform: rotate(90deg) translateY(-25.5%);"></app-spaces>
+            <app-spaces [spaces_color]="player1_Color" class="rotate" style="padding-right: 0px; transform: rotate(270deg) translateY(25.4%);"></app-spaces>
                 <div class="X_container">
-                    <div class="line line1"></div> 
-                    <div class="line line2"></div>       
+                    <app-square [square_color]="player3_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(48.5%, 22%) rotate(45deg);"></app-square>
+                    <app-square [square_color]="player1_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(-22%, -48.7%) rotate(45deg);"></app-square>
+                    <app-square [square_color]="player2_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(48.5%, -119%) rotate(45deg);"></app-square>
+                    <app-square [square_color]="player4_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(119%, -48.7%) rotate(45deg);"></app-square>
+                    
                 </div>
-            <app-spaces class="rotate" style="padding-left: 0px; transform: rotate(90deg) translateY(25.5%)"></app-spaces>
+            <app-spaces [spaces_color]="player4_Color" class="rotate" style="padding-left: 0px; transform: rotate(90deg) translateY(25.5%)"></app-spaces>
         </div>
 
          <div class="flexCol" style="margin-top: 0px; align-items: center;">
-            <app-spaces></app-spaces>
-        </div>
+            <app-spaces [spaces_color]="player3_Color" class="rotate" style=" transform: rotate(180deg)"></app-spaces>
+        </div> 
     </div>
