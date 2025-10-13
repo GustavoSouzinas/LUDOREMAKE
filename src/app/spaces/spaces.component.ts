@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
+import { SingleSpaceComponent } from "../single-space/single-space.component";
 
 @Component({
   selector: 'app-spaces',
-  imports: [CommonModule],
+  imports: [CommonModule, SingleSpaceComponent],
   templateUrl: './spaces.component.html',
   styleUrl: './spaces.component.css'
 })
