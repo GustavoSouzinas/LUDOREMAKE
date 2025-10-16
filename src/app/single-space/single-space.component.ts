@@ -11,5 +11,6 @@ import { Component, Input} from '@angular/core';
 export class SingleSpaceComponent {
 
   @Input() data: any;
-  @Input() available = true
+  @Input() show_star = false;
+  @Input() show_arrow = false;
 }

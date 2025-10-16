@@ -2,3 +2,10 @@
     background-color: white;
     height: 52px;
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  height: 52px;
+}

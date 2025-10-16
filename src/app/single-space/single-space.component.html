@@ -1,3 +1,8 @@
 <div class="space" [style.background-color]="data" >
-     <img *ngIf="available" src="assets/Five_Pointed_Star_Solid.svg">
+     <div class="container" *ngIf="show_arrow" >
+          <img src="assets/Right_simple_arrow_-_black.svg" style="transform: rotate(90deg);" alt="image" width="45" height="45">
+     </div>
+     <div class="container" *ngIf="show_star">
+          <img src="assets/Five_Pointed_Star_Solid.svg" style="transform: rotate(180deg);">
+     </div>
 </div>
