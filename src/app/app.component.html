@@ -1,29 +1,32 @@
-    <app-single-space [data]="player2_Color" style="position: absolute"></app-single-space>
 
-   <div class="board flexCol">
+   <div class="board test-grid">
 
         <app-circle-pieces [color]="player1_Color" class="top left" style="position: absolute;"></app-circle-pieces>
         <app-circle-pieces [color]="player2_Color" class="top right" style="position: absolute;"></app-circle-pieces>
         <app-circle-pieces [color]="player3_Color" class="bottom left" style="position: absolute;"></app-circle-pieces>
         <app-circle-pieces [color]="player4_Color" class="bottom right" style="position: absolute;"></app-circle-pieces>
 
-        <div class="flexCol" style="align-items: center;" >
+        <div class="top-grid" >
             <app-spaces [spaces_color]="player2_Color"></app-spaces>
         </div>
     
-        <div class="flexRow">
-            <app-spaces [spaces_color]="player1_Color" class="rotate" style="padding-right: 0px; transform: rotate(270deg) translateY(25.4%);"></app-spaces>
-                <div class="X_container">
-                    <app-square [square_color]="player3_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(48.5%, 22%) rotate(45deg);"></app-square>
-                    <app-square [square_color]="player1_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(-22%, -48.7%) rotate(45deg);"></app-square>
-                    <app-square [square_color]="player2_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(48.5%, -119%) rotate(45deg);"></app-square>
-                    <app-square [square_color]="player4_Color" class="rotate" style="z-index: -1; position: absolute; bottom: 0%; transform: translate(119%, -48.7%) rotate(45deg);"></app-square>
-                    
-                </div>
-            <app-spaces [spaces_color]="player4_Color" class="rotate" style="padding-left: 0px; transform: rotate(90deg) translateY(25.5%)"></app-spaces>
+        <div class="right-grid">
+            <app-spaces [spaces_color]="player1_Color" class="rotate" style=" transform: rotate(90deg);"></app-spaces>
         </div>
 
-         <div class="flexCol" style="margin-top: 0px; align-items: center;">
+         <div class="bottom-grid">
             <app-spaces [spaces_color]="player3_Color" class="rotate" style=" transform: rotate(180deg)"></app-spaces>
         </div> 
+
+        <div class="left-grid">
+            <app-spaces [spaces_color]="player1_Color" class="rotate" style=" transform: rotate(270deg);"></app-spaces>
+        </div>
+       
+
+        <div class="X_container center-grid">
+            <app-square [square_color]="player3_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
+            <app-square [square_color]="player1_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(45deg);"></app-square>
+            <app-square [square_color]="player2_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, -22%) rotate(45deg);"></app-square>
+            <app-square [square_color]="player4_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(119%, 48.3%) rotate(45deg);"></app-square>
+        </div>
     </div>

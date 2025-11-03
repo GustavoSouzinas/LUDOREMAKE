@@ -1,17 +1,26 @@
 <div class="parentBox">
-    <div class="grid">
-        <app-single-space class="space" [data]="spaces_color" *ngFor="let space of last_spaces"></app-single-space>
+
+     <div class="grid" style="transform: rotate(180deg);">
+        <app-single-space class="space" [data]="spaces_color" ></app-single-space>
+        <app-single-space class="space" [data]="spaces_color" ></app-single-space>
         <app-single-space class="space" [show_star]="show_data" [data]="spaces_color" ></app-single-space>
         <app-single-space class="space" [data]="spaces_color" ></app-single-space>
         <app-single-space class="space" [data]="spaces_color" ></app-single-space>
+        <app-single-space class="space" [data]="spaces_color" ></app-single-space>
     </div>
+
+    
     <div class="grid">
         <app-single-space class="space" [data]="spaces_color" ></app-single-space>
-        <app-single-space class="space" *ngFor="let space of middle_spaces" [data]="space"></app-single-space>
+        <app-single-space class="space" *ngFor="let space of middle_spaces"></app-single-space>
     </div>
+   
     <div class="grid">
         <app-single-space class="space" [data]="spaces_color" ></app-single-space>
         <app-single-space class="space" [show_arrow]="show_data" [data]="spaces_color" ></app-single-space>
-        <app-single-space class="space" [data]="spaces_color" *ngFor="let space of first_spaces"></app-single-space>
+        <app-single-space class="space" [data]="spaces_color" ></app-single-space>
+        <app-single-space class="space" [data]="spaces_color" ></app-single-space>
+        <app-single-space class="space" [data]="spaces_color" ></app-single-space>
+        <app-single-space class="space" [data]="spaces_color" ></app-single-space>
     </div>
 </div>
