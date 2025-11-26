@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { PieceComponent } from "../piece/piece.component";
 
 @Component({
   selector: 'app-circle-pieces',
-  imports: [],
+  imports: [PieceComponent],
   templateUrl: './circle-pieces.component.html',
   styleUrl: './circle-pieces.component.css'
 })

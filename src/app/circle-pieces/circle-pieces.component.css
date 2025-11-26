@@ -1,6 +1,8 @@
 .circle{
-    position: relative;
 
+    position: relative;
+    display: flex;
+    justify-content: center;
     border: 1px solid black;
     border-radius: 50%;
     height: 200px;

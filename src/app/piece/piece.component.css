@@ -1,0 +1,20 @@
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin: 20px;
+}
+
+.numberCircle{
+
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
