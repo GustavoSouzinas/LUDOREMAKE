@@ -6,10 +6,10 @@
 
     
     <div class="grid">
-        <app-single-space class="space" [color]="s.color" *ngFor="let s of middle_spaces"></app-single-space>
+        <app-single-space class="space" [color]="s.color" [count]="s.count" *ngFor="let s of middle_spaces"></app-single-space>
     </div>
    
     <div class="grid">
-        <app-single-space class="space" [show_arrow]="s.arrow" [color]="spaces_color" *ngFor="let s of last_spaces" ></app-single-space>
+        <app-single-space class="space" [show_arrow]="s.arrow" [color]="spaces_color" [count]="s.count" *ngFor="let s of last_spaces" ></app-single-space>
     </div>
 </div>

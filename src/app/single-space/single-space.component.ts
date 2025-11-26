@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input} from '@angular/core';
+import { Component, input, Input} from '@angular/core';
+import { OnInit } from '@angular/core';
 
 let counter = 0
 
@@ -9,18 +10,21 @@ let counter = 0
   templateUrl: './single-space.component.html',
   styleUrl: './single-space.component.css'
 })
-export class SingleSpaceComponent {
+export class SingleSpaceComponent implements OnInit {
 
-  number: number;
+  number: number | null = null;
 
-  constructor(){
-    counter++;
-    this.number = counter;
-  }
+  ngOnInit(){ 
+  
+  if(this.count){
+      counter++;
+      this.number = counter;
+    }}
 
   @Input() color = "";
   @Input() show_star = false;
   @Input() show_arrow = false;
+  @Input() count = true;
   
 }
 
@@ -28,7 +32,8 @@ export class single_space{
   constructor (
   public star: boolean = false,
   public arrow: boolean = false,
-  public color: string = "white"
+  public color: string = "white",
+  public count: boolean = true
   ){}
   
   }

@@ -29,13 +29,13 @@ createClassLastSpaces(){
   for (let i=0; i<6; i++){
     const item = new single_space();
   
-    if(i<6)
+    if(i<6){
       item.color = this.spaces_color
-
-    if(i == 1)
+    }
+    if(i == 1){
       item.arrow = true
       item.color = this.spaces_color
-
+    }
     this.last_spaces.push(item)
   }
 }
@@ -45,13 +45,13 @@ createClassFirstSpaces(){
   for (let i=0; i<6; i++){
     const item = new single_space();
 
-    if(i<1)
+    if(i<6){
       item.color = this.spaces_color
-
-    if(i == 2)
+    }
+    if(i == 2){
     item.star = true
     item.color = this.spaces_color
-
+    }
   this.first_spaces.push(item)
   }
 
@@ -62,12 +62,14 @@ createClassMiddleSpaces(){
   for (let i=0; i<6; i++){
     const item = new single_space();
 
-    if(i<1)
+    if(i<1){
       item.color = this.spaces_color;
+    }
 
-    if(i>2)
+    if(i>0){
       item.color = "white";
-
+      item.count = false;
+    }
   this.middle_spaces.push(item);
   }
 
