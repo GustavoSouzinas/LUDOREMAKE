@@ -18,8 +18,17 @@ export class SingleSpaceComponent {
     this.number = counter;
   }
 
-  @Input() data: any;
+  @Input() color = "";
   @Input() show_star = false;
   @Input() show_arrow = false;
   
 }
+
+export class single_space{
+  constructor (
+  public star: boolean = false,
+  public arrow: boolean = false,
+  public color: string = "white"
+  ){}
+  
+  }

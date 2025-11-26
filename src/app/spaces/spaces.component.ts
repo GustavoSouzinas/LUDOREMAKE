@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { SingleSpaceComponent } from "../single-space/single-space.component";
+import { SingleSpaceComponent, single_space } from "../single-space/single-space.component";
 
 @Component({
   selector: 'app-spaces',
@@ -12,42 +12,66 @@ import { SingleSpaceComponent } from "../single-space/single-space.component";
 })
 export class SpacesComponent implements OnInit {
 
-
-
-last_spaces: {id: number, row: number, col: number }[] = []
-middle_spaces: {id: number, row: number, col: number }[] = []
-first_spaces: {id: number, row: number, col: number }[] = []
+first_spaces: single_space[]=[]
+middle_spaces: single_space[]=[]
+last_spaces: single_space[]=[]
 
 @Input() spaces_color = '';
-show_data = true;
 
 ngOnInit(): void {
- this.createLastSpaces();
- this.createMiddleSpaces();
- this.createFirstSpaces();
+ this.createClassFirstSpaces();
+ this.createClassMiddleSpaces();
+ this.createClassLastSpaces();
 }
 
-createFirstSpaces(){
-  this.first_spaces.push({ id: 1, row: 1, col: 1 });
-  this.first_spaces.push({ id: 2, row: 2, col: 1 });
-  this.first_spaces.push({ id: 3, row: 3, col: 1 });
-  this.first_spaces.push({ id: 4, row: 4, col: 1 });
-}
+createClassLastSpaces(){
 
+  for (let i=0; i<6; i++){
+    const item = new single_space();
+  
+    if(i<6)
+      item.color = this.spaces_color
 
-createLastSpaces(){
-  this.last_spaces.push({ id: 1, row: 1, col: 1 });
-  this.last_spaces.push({ id: 2, row: 2, col: 1 });
-  this.last_spaces.push({ id: 3, row: 3, col: 1 });
-}
+    if(i == 1)
+      item.arrow = true
+      item.color = this.spaces_color
 
-createMiddleSpaces(){
- this.middle_spaces.push({ id: 1, row: 1, col: 1 });
-  this.middle_spaces.push({ id: 2, row: 2, col: 1 });
-  this.middle_spaces.push({ id: 3, row: 3, col: 1 });
-  this.middle_spaces.push({ id: 4, row: 4, col: 1 });
-  this.middle_spaces.push({ id: 5, row: 5, col: 1 });
+    this.last_spaces.push(item)
   }
+}
+
+createClassFirstSpaces(){
+
+  for (let i=0; i<6; i++){
+    const item = new single_space();
+
+    if(i<1)
+      item.color = this.spaces_color
+
+    if(i == 2)
+    item.star = true
+    item.color = this.spaces_color
+
+  this.first_spaces.push(item)
+  }
+
+
+}
+
+createClassMiddleSpaces(){
+  for (let i=0; i<6; i++){
+    const item = new single_space();
+
+    if(i<1)
+      item.color = this.spaces_color;
+
+    if(i>2)
+      item.color = "white";
+
+  this.middle_spaces.push(item);
+  }
+
+}
 }
 
 
