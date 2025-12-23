@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { SingleSpaceComponent, single_space } from "../single-space/single-space.component";
+import { PieceComponent } from "../piece/piece.component";
 
 @Component({
   selector: 'app-spaces',

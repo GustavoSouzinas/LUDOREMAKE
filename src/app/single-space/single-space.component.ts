@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, input, Input} from '@angular/core';
 import { OnInit } from '@angular/core';
+import { PieceComponent } from "../piece/piece.component";
 
 let counter = 0
 
 @Component({
   selector: 'app-single-space',
-  imports: [CommonModule],
+  imports: [CommonModule, PieceComponent],
   templateUrl: './single-space.component.html',
   styleUrl: './single-space.component.css'
 })

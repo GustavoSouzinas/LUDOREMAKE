@@ -1,4 +1,3 @@
 <div [style.background-color]="color" class="circle">
-    <app-piece [color]="color"></app-piece>
-    <app-piece [color]="color"></app-piece>
+    <app-piece *ngFor="let p of pieces" [id]="p.id" [color]="p.color"></app-piece>
 </div>

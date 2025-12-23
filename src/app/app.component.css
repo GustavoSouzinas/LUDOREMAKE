@@ -7,10 +7,38 @@
 
 }
 
+.circle_piece{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin: 12px;
+}
+
+.circle{
+
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+}
+
 .flexCol{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.background{
+    z-index: -1;
+
 }
 
 .rotate{
