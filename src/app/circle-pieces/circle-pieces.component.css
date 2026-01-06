@@ -1,14 +1,22 @@
 .circle{
-
-    position: relative;
-    display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
     border-radius: 50%;
     height: 200px;
     width: 200px;
+}
+
+.piece{
+    display: flex;
+    flex-wrap: wrap;
+    height: 50%;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
 }
 
 .margintopleft{
@@ -49,4 +57,12 @@
 
 .right{
     margin-right: 10px;
+}
+
+
+.wrapbox{
+    display: flex;
+    flex-wrap: wrap;
+    height: 150px;
+    width: 150px;
 }

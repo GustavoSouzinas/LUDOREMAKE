@@ -12,9 +12,11 @@ export class CirclePiecesComponent{
 
 
   @Input() color = '';
-  @Input() pieces: single_piece[]=[];
+  @Input() circle_pieces: single_piece[]=[];
 
-  
+  get local_pieces(){
+    return this.circle_pieces.filter(p => p.current_pos === 1000)
+  }
 
 
   }

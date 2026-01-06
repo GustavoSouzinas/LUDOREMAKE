@@ -1,10 +1,17 @@
 <div class="space" [style.background-color]="color" >
 
      <div style="position: absolute;">{{number}}</div>
+
      <div class="container" *ngIf="show_arrow" >
           <img src="assets/Right_simple_arrow_-_black.svg" style="transform: rotate(90deg);" alt="image" width="45" height="45">
      </div>
+
      <div class="container" *ngIf="show_star">
           <img src="assets/Five_Pointed_Star_Solid.svg" style="transform: rotate(0deg); position: absolute;">
      </div>
+     
+     <div class="container-wrap">
+          <app-piece class="item" *ngFor="let p of local_pieces" [color]="p.color" [current_pos]="p.current_pos" [id]="p.id" [class.grow]="canGrow" [style.min-width.px]="minWidth"></app-piece>
+     </div>
+
 </div>

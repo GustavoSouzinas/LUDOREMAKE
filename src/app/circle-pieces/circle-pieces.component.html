@@ -1,3 +1,6 @@
 <div [style.background-color]="color" class="circle">
-    <app-piece *ngFor="let p of pieces" [id]="p.id" [color]="p.color"></app-piece>
+
+    <div class="wrapbox">
+        <app-piece class="piece" *ngFor="let p of local_pieces" [id]="p.id" [color]="p.color"></app-piece>
+    </div>
 </div>

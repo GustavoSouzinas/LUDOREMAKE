@@ -9,3 +9,21 @@
   justify-content: center; 
   height: 52px;
 }
+
+.container-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center; 
+  height: 100%;
+  width: 100%;
+}
+
+.item{
+  z-index: 1;
+  flex: 0 1 0;
+}
+
+.grow{
+  flex-grow: 1
+}

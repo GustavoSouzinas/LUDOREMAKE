@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
-import { SingleSpaceComponent, single_space } from "../single-space/single-space.component";
-import { PieceComponent } from "../piece/piece.component";
+import { SingleSpaceComponent, single_space} from "../single-space/single-space.component";
+import { PieceComponent, single_piece  } from "../piece/piece.component";
 
 @Component({
   selector: 'app-spaces',
@@ -18,7 +18,7 @@ middle_spaces: single_space[]=[]
 last_spaces: single_space[]=[]
 
 @Input() spaces_color = '';
-
+@Input() pieces: single_piece[]=[]
 ngOnInit(): void {
  this.createClassFirstSpaces();
  this.createClassMiddleSpaces();

@@ -37,7 +37,7 @@ export class AppComponent implements OnInit{
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
-      item.color = "green"
+      item.color = "yellow"
       item.id++
       this.player2_pieces.push(item)
     }
