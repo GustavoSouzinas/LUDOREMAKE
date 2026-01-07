@@ -16,6 +16,8 @@ export class AppComponent implements OnInit{
   player1_pieces: single_piece[]=[]
   player2_pieces: single_piece[]=[] 
   
+  current_player:number = 2;
+  selected_piece:number = 3;
   dice_result: number = 0;
 
 
@@ -43,6 +45,8 @@ export class AppComponent implements OnInit{
       item.id = i
       item.color = "yellow"
       item.id++
+      item.current_pos = 1000;
+      item.init_pos = 9
       this.player2_pieces.push(item)
     }
   }
@@ -53,10 +57,19 @@ export class AppComponent implements OnInit{
   }
 
   checkDiceResult(){
-    if(this.dice_result === 6 && this.player1_pieces[0].current_pos === 1000){
-    this.player1_pieces[0].current_pos = this.player1_pieces[0].init_pos
-    }else if(this.player1_pieces[0].current_pos < 1000){
-     this.player1_pieces[0].current_pos = (this.player1_pieces[0].current_pos + this.dice_result) % 52
+    let pieces: single_piece[]=[];
+    switch(this.current_player){
+      case 1: pieces = this.player1_pieces; break;
+      case 2: pieces = this.player2_pieces; break;
+    }
+    if(this.dice_result === 6 && pieces[this.selected_piece].current_pos === 1000){
+
+      pieces[this.selected_piece].current_pos = pieces[this.selected_piece].init_pos
+
+    }else if(pieces[this.selected_piece].current_pos < 1000){
+
+      pieces[this.selected_piece].current_pos = (pieces[this.selected_piece].current_pos + this.dice_result) % 52
+
     }
   }
 
