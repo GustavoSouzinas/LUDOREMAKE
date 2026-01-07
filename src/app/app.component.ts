@@ -16,21 +16,25 @@ export class AppComponent implements OnInit{
   player1_pieces: single_piece[]=[]
   player2_pieces: single_piece[]=[] 
   
+  dice_result: number = 0;
+
+
+
   ngOnInit(): void {
     this.Player1_pieces();
     this.Player2_pieces();
   }
 
-  
   Player1_pieces(){
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
       item.color = "green"
       item.id++
+      item.current_pos = 1000;
+      item.init_pos = 48
       this.player1_pieces.push(item)
     }
-
   }
   
    Player2_pieces(){
@@ -41,9 +45,20 @@ export class AppComponent implements OnInit{
       item.id++
       this.player2_pieces.push(item)
     }
-
   }
 
+  RollDice(){
+   this.dice_result = Math.floor(Math.random()*6) + 1;
+   this.checkDiceResult();
+  }
+
+  checkDiceResult(){
+    if(this.dice_result === 6 && this.player1_pieces[0].current_pos === 1000){
+    this.player1_pieces[0].current_pos = this.player1_pieces[0].init_pos
+    }else if(this.player1_pieces[0].current_pos < 1000){
+     this.player1_pieces[0].current_pos = (this.player1_pieces[0].current_pos + this.dice_result) % 52
+    }
+  }
 
   title = 'LUDOREMAKE';
   player1_Color = "green"
