@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PieceComponent, single_piece } from "../piece/piece.component";
 import { CommonModule } from '@angular/common';
 
@@ -10,9 +10,18 @@ import { CommonModule } from '@angular/common';
 })
 export class CirclePiecesComponent{
 
-
+  @Output() piece_selected = new EventEmitter<number>()
+  @Output() player_selected = new EventEmitter<number>()
   @Input() color = '';
   @Input() circle_pieces: single_piece[]=[];
+
+  piece_selected_pass(id: number){
+    this.piece_selected.emit(id);
+  }
+
+  player_selected_pass(p: number){
+    this.player_selected.emit(p);
+  }
 
   get local_pieces(){
     return this.circle_pieces.filter(p => p.current_pos === 1000)

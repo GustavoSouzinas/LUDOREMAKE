@@ -14,6 +14,10 @@
     aspect-ratio: 1;
 }
 
+.circle:hover{
+    border: 2px solid rgb(255, 255, 255);
+}
+
 .numberCircle{
     display: flex;
     justify-content: center;

@@ -18,7 +18,8 @@ middle_spaces: single_space[]=[]
 last_spaces: single_space[]=[]
 
 @Input() spaces_color = '';
-@Input() pieces: single_piece[]=[]
+@Input() p1_pieces: single_piece[]=[]
+@Input() p2_pieces: single_piece[]=[]
 ngOnInit(): void {
  this.createClassFirstSpaces();
  this.createClassMiddleSpaces();

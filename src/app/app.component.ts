@@ -16,8 +16,8 @@ export class AppComponent implements OnInit{
   player1_pieces: single_piece[]=[]
   player2_pieces: single_piece[]=[] 
   
-  current_player:number = 2;
-  selected_piece:number = 3;
+  current_player:number = 0;
+  selected_piece:number = 0;
   dice_result: number = 0;
 
 
@@ -59,8 +59,8 @@ export class AppComponent implements OnInit{
   checkDiceResult(){
     let pieces: single_piece[]=[];
     switch(this.current_player){
-      case 1: pieces = this.player1_pieces; break;
-      case 2: pieces = this.player2_pieces; break;
+      case 0: pieces = this.player1_pieces; break;
+      case 1: pieces = this.player2_pieces; break;
     }
     if(this.dice_result === 6 && pieces[this.selected_piece].current_pos === 1000){
 
@@ -71,6 +71,16 @@ export class AppComponent implements OnInit{
       pieces[this.selected_piece].current_pos = (pieces[this.selected_piece].current_pos + this.dice_result) % 52
 
     }
+  }
+
+  selectPiece(id: number){
+    this.selected_piece = id - 1
+    console.log(this.selected_piece)
+  }
+
+  selectPlayer(p: number){
+    this.current_player = p
+    console.log(this.current_player)
   }
 
   title = 'LUDOREMAKE';

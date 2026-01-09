@@ -30,7 +30,6 @@ export class SingleSpaceComponent implements OnInit {
       counter++;
       this.number = counter;
     }
-    
   this.changeStytle()
     }
 
@@ -38,17 +37,19 @@ export class SingleSpaceComponent implements OnInit {
   @Input() show_star = false;
   @Input() show_arrow = false;
   @Input() count = true;
-  @Input() pieces: single_piece[]=[]
+  @Input() p1_pieces: single_piece[]=[]
+  @Input() p2_pieces: single_piece[]=[]
 
   get local_pieces(): Piece[]{
-    return this.pieces.filter(p => p.current_pos === this.number)
+    return [...this.p1_pieces.filter(p => p.current_pos === this.number), 
+    ...this.p2_pieces.filter(p => p.current_pos === this.number)]
   }
 
   changeStytle(){
   if(this.local_pieces.length > 9){
     this.minWidth = 10
   }
-  if(this.local_pieces.length > 3){
+  if(this.local_pieces.length > 2){
     this.canGrow = false
   }
   }

@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-piece',
@@ -11,9 +10,25 @@ import { CommonModule } from '@angular/common';
 })
 export class PieceComponent {
 
+@Output() piece_selected = new EventEmitter<number>();
+@Output() player_selected = new EventEmitter<number>();
 @Input() color = "";
 @Input() id = 0;
 @Input() current_pos = 0;
+
+current_player: number = 0;
+
+
+
+selectPiece(id: number){
+    this.piece_selected.emit(id);
+    
+    switch(this.color){
+    case "green": this.current_player = 0; break;
+    case "yellow": this.current_player = 1; break;
+  }
+    this.player_selected.emit(this.current_player);
+  }
 }
 
 export class single_piece{

@@ -1,15 +1,15 @@
 <div class="parentBox">
 
      <div class="grid" style="transform: rotate(180deg);">
-        <app-single-space class="space" [show_star]="s.star" [color]="s.color" [pieces]="pieces" *ngFor="let s of first_spaces" ></app-single-space>
+        <app-single-space class="space" [show_star]="s.star" [color]="s.color" [p1_pieces]="p1_pieces" [p2_pieces]="p2_pieces" *ngFor="let s of first_spaces" ></app-single-space>
     </div>
 
     
     <div class="grid">
-        <app-single-space class="space" [color]="s.color" [count]="s.count" [pieces]="pieces" *ngFor="let s of middle_spaces"></app-single-space>
+        <app-single-space class="space" [color]="s.color" [count]="s.count" [p1_pieces]="p1_pieces" [p2_pieces]="p2_pieces" *ngFor="let s of middle_spaces"></app-single-space>
     </div>
    
     <div class="grid">
-        <app-single-space class="space" [show_arrow]="s.arrow" [color]="spaces_color" [pieces]="pieces" [count]="s.count" *ngFor="let s of last_spaces" ></app-single-space>
+        <app-single-space class="space" [show_arrow]="s.arrow" [color]="spaces_color" [p1_pieces]="p1_pieces" [p2_pieces]="p2_pieces" [count]="s.count" *ngFor="let s of last_spaces" ></app-single-space>
     </div>
 </div>
