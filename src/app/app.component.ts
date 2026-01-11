@@ -14,17 +14,19 @@ import { PieceComponent, single_piece } from "./piece/piece.component";
 })
 export class AppComponent implements OnInit{
   player1_pieces: single_piece[]=[]
-  player2_pieces: single_piece[]=[] 
+  player2_pieces: single_piece[]=[]
+  player3_pieces: single_piece[]=[]
+  player4_pieces: single_piece[]=[]
   
   current_player:number = 0;
   selected_piece:number = 0;
   dice_result: number = 0;
 
-
-
   ngOnInit(): void {
     this.Player1_pieces();
     this.Player2_pieces();
+    this.Player3_pieces();
+    this.Player4_pieces();
   }
 
   Player1_pieces(){
@@ -34,7 +36,7 @@ export class AppComponent implements OnInit{
       item.color = "green"
       item.id++
       item.current_pos = 1000;
-      item.init_pos = 48
+      item.init_pos = 47
       this.player1_pieces.push(item)
     }
   }
@@ -46,13 +48,37 @@ export class AppComponent implements OnInit{
       item.color = "yellow"
       item.id++
       item.current_pos = 1000;
-      item.init_pos = 9
+      item.init_pos = 8
       this.player2_pieces.push(item)
     }
   }
 
+  Player3_pieces(){
+    for(let i=0; i<4; i++){
+      const item = new single_piece()
+      item.id = i
+      item.color = "blue"
+      item.id++
+      item.current_pos = 1000;
+      item.init_pos = 21
+      this.player3_pieces.push(item)
+    }
+  }
+
+  Player4_pieces(){
+    for(let i=0; i<4; i++){
+      const item = new single_piece()
+      item.id = i
+      item.color = "orange"
+      item.id++
+      item.current_pos = 1000;
+      item.init_pos = 34
+      this.player4_pieces.push(item)
+    }
+  }
+
   RollDice(){
-   this.dice_result = Math.floor(Math.random()*6) + 1;
+   this.dice_result= 1;
    this.checkDiceResult();
   }
 
@@ -61,8 +87,10 @@ export class AppComponent implements OnInit{
     switch(this.current_player){
       case 0: pieces = this.player1_pieces; break;
       case 1: pieces = this.player2_pieces; break;
+      case 2: pieces = this.player3_pieces; break;
+      case 3: pieces = this.player4_pieces; break;
     }
-    if(this.dice_result === 6 && pieces[this.selected_piece].current_pos === 1000){
+    if(this.dice_result === 1 && pieces[this.selected_piece].current_pos === 1000){
 
       pieces[this.selected_piece].current_pos = pieces[this.selected_piece].init_pos
 

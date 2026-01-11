@@ -1,15 +1,47 @@
 <div class="parentBox">
 
+    <!--First row-->
      <div class="grid" style="transform: rotate(180deg);">
-        <app-single-space class="space" [show_star]="s.star" [color]="s.color" [p1_pieces]="p1_pieces" [p2_pieces]="p2_pieces" *ngFor="let s of first_spaces" ></app-single-space>
+        <app-single-space class="space" 
+        [show_star]="s.star"
+        [color]="s.color"
+        [p1_pieces]="p1_pieces"
+        [p2_pieces]="p2_pieces"
+        [p3_pieces]="p3_pieces"
+        [p4_pieces]="p4_pieces"
+        (sp_piece_selected)="sp_piece_selected_pass($event)"
+        (sp_player_selected)="sp_player_selected_pass($event)"
+        *ngFor="let s of first_spaces" ></app-single-space>
     </div>
 
-    
+    <!--Middle row-->
     <div class="grid">
-        <app-single-space class="space" [color]="s.color" [count]="s.count" [p1_pieces]="p1_pieces" [p2_pieces]="p2_pieces" *ngFor="let s of middle_spaces"></app-single-space>
+        <app-single-space 
+        class="space"
+        [color]="s.color"
+        [count]="s.count"
+        [p1_pieces]="p1_pieces"
+        [p2_pieces]="p2_pieces"
+        [p3_pieces]="p3_pieces"
+        [p4_pieces]="p4_pieces"
+        (sp_piece_selected)="sp_piece_selected_pass($event)"
+        (sp_player_selected)="sp_player_selected_pass($event)" 
+        *ngFor="let s of middle_spaces"></app-single-space>
     </div>
    
+   <!--Last row-->
     <div class="grid">
-        <app-single-space class="space" [show_arrow]="s.arrow" [color]="spaces_color" [p1_pieces]="p1_pieces" [p2_pieces]="p2_pieces" [count]="s.count" *ngFor="let s of last_spaces" ></app-single-space>
+        <app-single-space 
+        class="space" 
+        [show_arrow]="s.arrow" 
+        [color]="spaces_color"
+        [p1_pieces]="p1_pieces"
+        [p2_pieces]="p2_pieces"
+        [p3_pieces]="p3_pieces"
+        [p4_pieces]="p4_pieces"
+        [count]="s.count"
+        (sp_piece_selected)="sp_piece_selected_pass($event)" 
+        (sp_player_selected)="sp_player_selected_pass($event)"
+        *ngFor="let s of last_spaces" ></app-single-space>
     </div>
 </div>

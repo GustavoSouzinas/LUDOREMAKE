@@ -1,29 +1,67 @@
     <button (click)="RollDice()" >{{dice_result}}</button>
+    
    <div class="board test-grid">
-        
+
+        <!--Circle Pieces-->
         <app-circle-pieces [color]="player1_Color" [circle_pieces]="player1_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)"class="top left" style="position: absolute;"></app-circle-pieces>
-
         <app-circle-pieces [color]="player2_Color" [circle_pieces]="player2_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="top right" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player3_Color" class="bottom left" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player4_Color" class="bottom right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player3_Color" [circle_pieces]="player4_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player4_Color" [circle_pieces]="player3_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom right" style="position: absolute;"></app-circle-pieces>
 
+        <!--Top spaces-->
         <div class="top-grid" >
-            <app-spaces [spaces_color]="player2_Color" [p1_pieces]="player1_pieces" [p2_pieces]="player2_pieces"></app-spaces>
+            <app-spaces 
+            [spaces_color]="player2_Color"
+            [p1_pieces]="player1_pieces"
+            [p2_pieces]="player2_pieces"
+            [p3_pieces]="player3_pieces"
+            [p4_pieces]="player4_pieces"
+            (sp_piece_selected)="selectPiece($event)"
+            (sp_player_selected)="selectPlayer($event)"></app-spaces>
         </div>
     
+        <!--Right spaces-->
         <div class="right-grid">
-            <app-spaces [spaces_color]="player4_Color" [p1_pieces]="player1_pieces" [p2_pieces]="player2_pieces" class="rotate" style=" transform: rotate(90deg);"></app-spaces>
+            <app-spaces
+            [spaces_color]="player4_Color"
+            [p1_pieces]="player1_pieces"
+            [p2_pieces]="player2_pieces"
+            [p3_pieces]="player3_pieces"
+            [p4_pieces]="player4_pieces"
+            (sp_piece_selected)="selectPiece($event)"
+            (sp_player_selected)="selectPlayer($event)"
+            class="rotate"
+            style="transform: rotate(90deg);"></app-spaces>
         </div>
 
+        <!--Bottom spaces-->
          <div class="bottom-grid">
-            <app-spaces [spaces_color]="player3_Color" [p1_pieces]="player1_pieces" [p2_pieces]="player2_pieces" class="rotate" style=" transform: rotate(180deg)"></app-spaces>
+            <app-spaces 
+            [spaces_color]="player3_Color"
+            [p1_pieces]="player1_pieces"
+            [p2_pieces]="player2_pieces"
+            [p3_pieces]="player3_pieces"
+            [p4_pieces]="player4_pieces"
+            (sp_piece_selected)="selectPiece($event)"
+            (sp_player_selected)="selectPlayer($event)"
+            class="rotate" style="transform: rotate(180deg)"></app-spaces>
         </div> 
 
+        <!--Left spaces-->
         <div class="left-grid">
-            <app-spaces [spaces_color]="player1_Color" [p1_pieces]="player1_pieces" [p2_pieces]="player2_pieces" class="rotate" style=" transform: rotate(270deg);"></app-spaces>
+            <app-spaces 
+            [spaces_color]="player1_Color"
+            [p1_pieces]="player1_pieces"
+            [p2_pieces]="player2_pieces"
+            [p3_pieces]="player3_pieces"
+            [p4_pieces]="player4_pieces"
+            (sp_piece_selected)="selectPiece($event)"
+            (sp_player_selected)="selectPlayer($event)"
+            class="rotate"
+            style=" transform: rotate(270deg);"></app-spaces>
         </div>
        
-
+        <!--Center Square-->
         <div class="X_container center-grid">
             <app-square [square_color]="player3_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
             <app-square [square_color]="player1_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(45deg);"></app-square>

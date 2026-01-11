@@ -18,14 +18,14 @@ export class PieceComponent {
 
 current_player: number = 0;
 
-
-
 selectPiece(id: number){
     this.piece_selected.emit(id);
     
     switch(this.color){
     case "green": this.current_player = 0; break;
     case "yellow": this.current_player = 1; break;
+    case "blue": this.current_player = 2;break
+    case "orange": this.current_player = 3;break
   }
     this.player_selected.emit(this.current_player);
   }

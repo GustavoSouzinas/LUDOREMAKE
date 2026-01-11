@@ -1,6 +1,12 @@
 <div [style.background-color]="color" class="circle">
 
     <div class="wrapbox">
-        <app-piece class="piece" *ngFor="let p of local_pieces" [id]="p.id" [color]="p.color" (piece_selected)="piece_selected_pass($event)" (player_selected)="player_selected_pass($event)"></app-piece>
+        <app-piece
+        class="piece"
+        *ngFor="let p of local_pieces"
+        [id]="p.id"
+        [color]="p.color"
+        (piece_selected)="piece_selected_pass($event)"
+        (player_selected)="player_selected_pass($event)"></app-piece>
     </div>
 </div>
