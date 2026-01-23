@@ -56,7 +56,6 @@ export class SingleSpaceComponent implements OnInit {
   }
 
   get minWidth(): number{
-  
     return this.local_pieces.length > 9 ? 12:17
   }
 

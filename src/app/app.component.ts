@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
   selected_piece:number = 0;
   dice_result: number = 0;
 
+
   ngOnInit(): void {
     this.Player1_pieces();
     this.Player2_pieces();
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit{
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
+      item.final_pos = 45
       item.color = "green"
       item.id++
       item.current_pos = 1000;
@@ -97,7 +99,12 @@ export class AppComponent implements OnInit{
     }else if(pieces[this.selected_piece].current_pos < 1000){
 
       pieces[this.selected_piece].current_pos = (pieces[this.selected_piece].current_pos + this.dice_result) % 52
-
+      
+      if(pieces[this.selected_piece].current_pos = pieces[this.selected_piece].final_pos){
+      
+      
+      
+      }
     }
   }
 
