@@ -38,6 +38,7 @@ export class single_piece{
  public current_pos: number = 1000,
  public color: string = "white",
  public final_pos = 2000,
+ public final_enter = 2000,
  ){}
 
 

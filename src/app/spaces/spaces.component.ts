@@ -60,7 +60,6 @@ createClassFirstSpaces(){
 
   for (let i=0; i<6; i++){
     const item = new single_space();
-
     if(i<6){
       item.color = this.spaces_color
     }
@@ -84,6 +83,7 @@ createClassMiddleSpaces(){
 
     if(i>0){
       item.color = "white";
+      item.final_count = true;
       item.count = false;
     }
   this.middle_spaces.push(item);

@@ -34,7 +34,8 @@ export class AppComponent implements OnInit{
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
-      item.final_pos = 45
+      item.final_pos = 46
+      item.final_enter = 2015
       item.color = "green"
       item.id++
       item.current_pos = 1000;
@@ -96,14 +97,17 @@ export class AppComponent implements OnInit{
 
       pieces[this.selected_piece].current_pos = pieces[this.selected_piece].init_pos
 
-    }else if(pieces[this.selected_piece].current_pos < 1000){
+    }else if(pieces[this.selected_piece].current_pos < 1000 || pieces[this.selected_piece].current_pos>2000){
 
-      pieces[this.selected_piece].current_pos = (pieces[this.selected_piece].current_pos + this.dice_result) % 52
-      
-      if(pieces[this.selected_piece].current_pos = pieces[this.selected_piece].final_pos){
-      
-      
-      
+      if(pieces[this.selected_piece].current_pos === 51){
+      pieces[this.selected_piece].current_pos = 0
+      } else{
+      pieces[this.selected_piece].current_pos = (pieces[this.selected_piece].current_pos + this.dice_result)
+      console.log(pieces[this.selected_piece].current_pos)
+      }
+
+      if(pieces[this.selected_piece].current_pos === pieces[this.selected_piece].final_pos){
+        pieces[this.selected_piece].current_pos = pieces[this.selected_piece].final_enter
       }
     }
   }

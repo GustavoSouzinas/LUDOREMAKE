@@ -2,6 +2,7 @@
 
      <!--Position number-->
      <div style="position: absolute;">{{number}}</div>
+     <div style="position: absolute;">{{final_number}}</div>
 
      <!--Arrow icon-->
      <div class="container" style="position: absolute;" *ngIf="show_arrow" >
@@ -27,7 +28,7 @@
           (piece_selected)="sp_piece_selected_pass($event)"
           (player_selected)="sp_player_selected_pass($event)" 
           [color]="p.color" 
-          [current_pos]="p.current_pos" 
+          [current_pos]="p.current_pos"
           [id]="p.id" 
           [class.grow]="canGrow"
           [style.min-width.px]="minWidth"></app-piece>

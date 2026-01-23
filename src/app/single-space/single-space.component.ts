@@ -10,6 +10,7 @@ type Piece = {
   }
 
 let counter = 0
+let final_counter = 2000
 
 @Component({
   selector: 'app-single-space',
@@ -22,13 +23,18 @@ export class SingleSpaceComponent implements OnInit {
   Style_pieces: Piece[] = []
 
   number: number | null = null;
+  final_number: number | null = null;
   current_player: number = 0;
 
   ngOnInit(){ 
   if(this.count){
       this.number = counter;
       counter++;
-    }  
+  }
+  if(this.final_count){
+    this.final_number = final_counter
+    final_counter++
+  }
   }
 
   @Output() sp_piece_selected = new EventEmitter<number>();
@@ -37,6 +43,7 @@ export class SingleSpaceComponent implements OnInit {
   @Input() show_star = false;
   @Input() show_arrow = false;
   @Input() count = true;
+  @Input() final_count = false;
   @Input() p1_pieces: single_piece[]=[]
   @Input() p2_pieces: single_piece[]=[]
   @Input() p3_pieces: single_piece[]=[]
@@ -47,7 +54,12 @@ export class SingleSpaceComponent implements OnInit {
     ...this.p1_pieces.filter(p => p.current_pos === this.number), 
     ...this.p2_pieces.filter(p => p.current_pos === this.number),
     ...this.p3_pieces.filter(p => p.current_pos === this.number),
-    ...this.p4_pieces.filter(p => p.current_pos === this.number)
+    ...this.p4_pieces.filter(p => p.current_pos === this.number),
+    
+    ...this.p1_pieces.filter(p => p.current_pos === this.final_number), 
+    ...this.p2_pieces.filter(p => p.current_pos === this.final_number),
+    ...this.p4_pieces.filter(p => p.current_pos === this.final_number),
+    ...this.p3_pieces.filter(p => p.current_pos === this.final_number),
     ]
   }
 
@@ -73,7 +85,8 @@ export class single_space{
   public star: boolean = false,
   public arrow: boolean = false,
   public color: string = "white",
-  public count: boolean = true
+  public count: boolean = true,
+  public final_count = false
   ){}
 
 }
