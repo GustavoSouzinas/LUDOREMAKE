@@ -7,6 +7,7 @@ type Piece = {
     current_pos: number
     id: number
     color: string
+    disabled: boolean
   }
 
 let counter = 0
@@ -44,6 +45,8 @@ export class SingleSpaceComponent implements OnInit {
   @Input() show_arrow = false;
   @Input() count = true;
   @Input() final_count = false;
+  @Input() selected_piece = 0;
+  @Input() selected_player = 0;
   @Input() p1_pieces: single_piece[]=[]
   @Input() p2_pieces: single_piece[]=[]
   @Input() p3_pieces: single_piece[]=[]

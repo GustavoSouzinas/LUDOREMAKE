@@ -29,7 +29,10 @@
           (player_selected)="sp_player_selected_pass($event)" 
           [color]="p.color" 
           [current_pos]="p.current_pos"
-          [id]="p.id" 
+          [id]="p.id"
+          [disabled]="p.disabled"
+          [selected_piece]="selected_piece"
+          [selected_player]="selected_player"
           [class.grow]="canGrow"
           [style.min-width.px]="minWidth"></app-piece>
      </div>

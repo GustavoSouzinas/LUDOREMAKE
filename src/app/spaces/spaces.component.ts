@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Input,Output,EventEmitter } from '@angular/core';
 import { SingleSpaceComponent, single_space} from "../single-space/single-space.component";
@@ -20,6 +20,8 @@ last_spaces: single_space[]=[]
 @Output() sp_piece_selected = new EventEmitter<number>();
 @Output() sp_player_selected = new EventEmitter<number>();
 @Input() spaces_color = '';
+@Input() selected_piece = 0;
+@Input() selected_player = 0;
 @Input() p1_pieces: single_piece[]=[]
 @Input() p2_pieces: single_piece[]=[]
 @Input() p3_pieces: single_piece[]=[]

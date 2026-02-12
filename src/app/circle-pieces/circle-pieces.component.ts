@@ -14,6 +14,8 @@ export class CirclePiecesComponent{
   @Output() player_selected = new EventEmitter<number>()
   @Input() color = '';
   @Input() circle_pieces: single_piece[]=[];
+  @Input() selected_piece = 0;
+  @Input() selected_player = 0;
 
   piece_selected_pass(id: number){
     this.piece_selected.emit(id);

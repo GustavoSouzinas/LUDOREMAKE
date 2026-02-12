@@ -18,17 +18,25 @@ export class AppComponent implements OnInit{
   player3_pieces: single_piece[]=[]
   player4_pieces: single_piece[]=[]
   
+  defined_player:string = "";
   current_player:number = 0;
   selected_piece:number = 0;
+  selected_piece_color: string = "";
   dice_result: number = 0;
 
 
   ngOnInit(): void {
+    this.initialSetup();
     this.Player1_pieces();
     this.Player2_pieces();
     this.Player3_pieces();
     this.Player4_pieces();
   }
+
+  initialSetup(){
+  const players = ["green","yellow","blue","orange"]
+  this.defined_player = players[Math.floor(Math.random() * players.length)]
+}
 
   Player1_pieces(){
     for(let i=0; i<4; i++){
@@ -37,6 +45,9 @@ export class AppComponent implements OnInit{
       item.final_pos = 46
       item.final_enter = 2015
       item.color = "green"
+      if(item.color===this.defined_player){
+      item.disabled = false
+      }
       item.id++
       item.current_pos = 1000;
       item.init_pos = 47
@@ -48,7 +59,14 @@ export class AppComponent implements OnInit{
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
+      item.final_pos = 7
+      item.final_enter = 2000
+      item.final_exit = 2005
+      item.square_enter = 2024
       item.color = "yellow"
+       if(item.color===this.defined_player){
+      item.disabled = false
+      }
       item.id++
       item.current_pos = 1000;
       item.init_pos = 8
@@ -57,13 +75,20 @@ export class AppComponent implements OnInit{
   }
 
   Player3_pieces(){
-    for(let i=0; i<4; i++){
+  for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
-      item.color = "blue"
+      item.final_pos = 33
+      item.final_enter = 2010
+      item.final_exit = 2015
+      item.square_enter = 2034
+      item.color = "orange"
+       if(item.color===this.defined_player){
+      item.disabled = false
+      }
       item.id++
       item.current_pos = 1000;
-      item.init_pos = 21
+      item.init_pos = 34
       this.player3_pieces.push(item)
     }
   }
@@ -72,10 +97,17 @@ export class AppComponent implements OnInit{
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
-      item.color = "orange"
+      item.final_pos = 20,
+      item.final_enter = 2005,
+      item.final_exit = 2010,
+      item.square_enter = 2029,
+      item.color = "blue"
+      if(item.color===this.defined_player){
+      item.disabled = false
+      }
       item.id++
       item.current_pos = 1000;
-      item.init_pos = 34
+      item.init_pos = 21
       this.player4_pieces.push(item)
     }
   }
@@ -97,7 +129,7 @@ export class AppComponent implements OnInit{
 
       pieces[this.selected_piece].current_pos = pieces[this.selected_piece].init_pos
 
-    }else if(pieces[this.selected_piece].current_pos < 1000 || pieces[this.selected_piece].current_pos>2000){
+    }else if(pieces[this.selected_piece].current_pos < 1000 || pieces[this.selected_piece].current_pos>1999){
 
       if(pieces[this.selected_piece].current_pos === 51){
       pieces[this.selected_piece].current_pos = 0
@@ -109,11 +141,18 @@ export class AppComponent implements OnInit{
       if(pieces[this.selected_piece].current_pos === pieces[this.selected_piece].final_pos){
         pieces[this.selected_piece].current_pos = pieces[this.selected_piece].final_enter
       }
+
+      if(pieces[this.selected_piece].current_pos === pieces[this.selected_piece].final_exit){
+        pieces[this.selected_piece].current_pos = pieces[this.selected_piece].square_enter
+      }
     }
   }
 
   selectPiece(id: number){
     this.selected_piece = id - 1
+
+  const pieces = this.getPlayerPieces();
+  this.selected_piece_color = pieces[this.selected_piece].color
     console.log(this.selected_piece)
   }
 
@@ -121,6 +160,20 @@ export class AppComponent implements OnInit{
     this.current_player = p
     console.log(this.current_player)
   }
+
+
+  getPlayerPieces(): single_piece[] {
+  switch(this.current_player){
+      case 0: return this.player1_pieces; break;
+      case 1: return this.player2_pieces; break;
+      case 2: return this.player3_pieces; break;
+      case 3: return this.player4_pieces; break;
+      default: return []
+    }
+  }
+
+
+
 
   title = 'LUDOREMAKE';
   player1_Color = "green"

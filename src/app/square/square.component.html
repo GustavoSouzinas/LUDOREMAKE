@@ -1,1 +1,5 @@
-<div class="square" [style.background-color]="square_color" ></div>
+<div class="square" [style.background-color]="square_color">
+    <div class="wrapbox">
+        <app-piece class="piece" *ngFor="let p of local_pieces" [color]="p.color" [id]="p.id" [selected_piece]="selected_piece" [selected_player]="selected_player"></app-piece> 
+    </div>
+</div>

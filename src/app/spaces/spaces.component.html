@@ -9,6 +9,8 @@
         [p2_pieces]="p2_pieces"
         [p3_pieces]="p3_pieces"
         [p4_pieces]="p4_pieces"
+        [selected_piece]="selected_piece"
+        [selected_player]="selected_player"
         (sp_piece_selected)="sp_piece_selected_pass($event)"
         (sp_player_selected)="sp_player_selected_pass($event)"
         *ngFor="let s of first_spaces" ></app-single-space>
@@ -25,6 +27,8 @@
         [p2_pieces]="p2_pieces"
         [p3_pieces]="p3_pieces"
         [p4_pieces]="p4_pieces"
+        [selected_piece]="selected_piece"
+        [selected_player]="selected_player"
         (sp_piece_selected)="sp_piece_selected_pass($event)"
         (sp_player_selected)="sp_player_selected_pass($event)" 
         *ngFor="let s of middle_spaces"></app-single-space>
@@ -41,6 +45,8 @@
         [p3_pieces]="p3_pieces"
         [p4_pieces]="p4_pieces"
         [count]="s.count"
+        [selected_piece]="selected_piece"
+        [selected_player]="selected_player"
         (sp_piece_selected)="sp_piece_selected_pass($event)" 
         (sp_player_selected)="sp_player_selected_pass($event)"
         *ngFor="let s of last_spaces" ></app-single-space>

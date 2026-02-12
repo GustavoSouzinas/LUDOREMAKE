@@ -14,7 +14,14 @@
     aspect-ratio: 1;
 }
 
+.circle.disabled{
+pointer-events: none;
+}
+
 .circle:hover{
+    border: 2px solid rgb(255, 255, 255);
+}
+.selected{
     border: 2px solid rgb(255, 255, 255);
 }
 

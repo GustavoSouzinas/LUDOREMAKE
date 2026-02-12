@@ -1,12 +1,14 @@
     <button (click)="RollDice()" >{{dice_result}}</button>
-    
+
+   <h2>You're playing as {{defined_player}}</h2> 
+
    <div class="board test-grid">
 
         <!--Circle Pieces-->
-        <app-circle-pieces [color]="player1_Color" [circle_pieces]="player1_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)"class="top left" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player2_Color" [circle_pieces]="player2_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="top right" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player3_Color" [circle_pieces]="player4_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom left" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player4_Color" [circle_pieces]="player3_pieces" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player1_Color" [circle_pieces]="player1_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="top left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player2_Color" [circle_pieces]="player2_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="top right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player3_Color" [circle_pieces]="player3_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player4_Color" [circle_pieces]="player4_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom right" style="position: absolute;"></app-circle-pieces>
 
         <!--Top spaces-->
         <div class="top-grid" >
@@ -16,6 +18,8 @@
             [p2_pieces]="player2_pieces"
             [p3_pieces]="player3_pieces"
             [p4_pieces]="player4_pieces"
+            [selected_piece]="selected_piece"
+            [selected_player]="current_player"
             (sp_piece_selected)="selectPiece($event)"
             (sp_player_selected)="selectPlayer($event)"></app-spaces>
         </div>
@@ -28,6 +32,8 @@
             [p2_pieces]="player2_pieces"
             [p3_pieces]="player3_pieces"
             [p4_pieces]="player4_pieces"
+            [selected_piece]="selected_piece"
+            [selected_player]="current_player"
             (sp_piece_selected)="selectPiece($event)"
             (sp_player_selected)="selectPlayer($event)"
             class="rotate"
@@ -42,6 +48,8 @@
             [p2_pieces]="player2_pieces"
             [p3_pieces]="player3_pieces"
             [p4_pieces]="player4_pieces"
+            [selected_piece]="selected_piece"
+            [selected_player]="current_player"
             (sp_piece_selected)="selectPiece($event)"
             (sp_player_selected)="selectPlayer($event)"
             class="rotate" style="transform: rotate(180deg)"></app-spaces>
@@ -55,6 +63,8 @@
             [p2_pieces]="player2_pieces"
             [p3_pieces]="player3_pieces"
             [p4_pieces]="player4_pieces"
+            [selected_piece]="selected_piece"
+            [selected_player]="current_player"
             (sp_piece_selected)="selectPiece($event)"
             (sp_player_selected)="selectPlayer($event)"
             class="rotate"
@@ -63,9 +73,9 @@
        
         <!--Center Square-->
         <div class="X_container center-grid">
-            <app-square [square_color]="player3_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
-            <app-square [square_color]="player1_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(45deg);"></app-square>
-            <app-square [square_color]="player2_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, -22%) rotate(45deg);"></app-square>
-            <app-square [square_color]="player4_Color" class="rotate" style="z-index: -1; position: absolute; transform: translate(119%, 48.3%) rotate(45deg);"></app-square>
+            <app-square [square_pieces]="player3_pieces" [square_number]="2034" [square_color]="player3_Color" [selected_piece]="selected_piece" [selected_player]="current_player"  class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
+            <app-square [square_pieces]="player1_pieces" [square_number]="2020" [square_color]="player1_Color" [selected_piece]="selected_piece" [selected_player]="current_player" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(135deg);"></app-square>
+            <app-square [square_pieces]="player2_pieces" [square_number]="2024" [square_color]="player2_Color" [selected_piece]="selected_piece" [selected_player]="current_player" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, -22%) rotate(225deg);"></app-square>
+            <app-square [square_pieces]="player4_pieces" [square_number]="2029" [square_color]="player4_Color" [selected_piece]="selected_piece" [selected_player]="current_player" class="rotate" style="z-index: -1; position: absolute; transform: translate(119%, 48.3%) rotate(315deg);"></app-square>
         </div>
     </div>
