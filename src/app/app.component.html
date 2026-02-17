@@ -1,7 +1,8 @@
     <button (click)="RollDice()" >{{dice_result}}</button>
 
-   <h2>You're playing as {{defined_player}}</h2> 
-
+<div class="text-player">
+   <h2 >You're playing as <span [style.color]="defined_player">{{defined_player}}</span> </h2> 
+</div>
    <div class="board test-grid">
 
         <!--Circle Pieces-->

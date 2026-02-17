@@ -53,6 +53,7 @@ export class single_piece{
  public final_enter = 2000,
  public final_exit = 2000,
  public square_enter = 2000,
+ public has_looped = false,
  public disabled = true,
  ){}
 

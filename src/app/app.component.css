@@ -7,6 +7,11 @@
 
 }
 
+.text-player{
+display: flex;
+justify-content: center;
+}
+
 .circle_piece{
     display: flex;
     justify-content: center;
@@ -52,6 +57,7 @@ transform-origin: center;
     margin: auto;
 
     border: 1px solid black;
+    border-radius: 10%;
 }
 
 
