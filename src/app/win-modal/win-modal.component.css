@@ -1,0 +1,21 @@
+.square{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7;
+    height: 400px;
+    width: 500px;
+    background-color: white;
+    opacity: 0.85;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
+.background{
+    
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    opacity: 0.5;
+}

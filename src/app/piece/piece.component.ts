@@ -46,6 +46,7 @@ selectPiece(id: number){
 export class single_piece{
  constructor(
  public id: number = 0,
+ public player_id: number = 0,
  public init_pos: number = 0,
  public current_pos: number = 1000,
  public color: string = "white",

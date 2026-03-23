@@ -22,7 +22,7 @@ pointer-events: none;
     border: 2px solid rgb(255, 255, 255);
 }
 .selected{
-    border: 2px solid rgb(255, 255, 255);
+    animation: selection 1s linear infinite;
 }
 
 .numberCircle{
@@ -34,4 +34,12 @@ pointer-events: none;
     border-radius: 50%;
     height: 60%;
     width: 60%;
+}
+
+@keyframes selection {
+    0%{border: 2px solid rgb(255, 255, 255);}
+
+    50%{border: 2px solid rgb(0, 0, 0);}
+
+    100%{border: 2px solid rgb(255, 255, 255);}
 }

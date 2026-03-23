@@ -1,9 +1,26 @@
-    <button (click)="RollDice()" >{{dice_result}}</button>
+    <button (click)="PlayTurn()" >{{dice_result}}</button>
+    
 
-<div class="text-player">
-   <h2 >You're playing as <span [style.color]="defined_player">{{defined_player}}</span> </h2> 
-</div>
+    <div class="text-player">
+        <h2 >You're playing as <span class="outline" [style.color]="defined_player_color">{{defined_player_color}}</span></h2>
+        <h2 *ngIf="player_turn">, it's your turn!</h2>
+        <h2 *ngIf="!player_turn">, the others are playing...</h2>
+    </div>
+
+
+    <app-win-modal *ngIf="show_win" class="modal" [input_player]="victorious_player" [defined_player]="defined_player_number"></app-win-modal>
+
+    
+
+    
+
    <div class="board test-grid">
+        <div *ngIf="player_turn" class="dice-button">
+            <button (click)="PlayTurn()" class="dice-button-style">
+            <img *ngIf="!play_dice" src="assets/dice-roll-dice-freeze.png" height="130px" width="130px">    
+            <img *ngIf="play_dice" src="assets/dice-roll-dice.gif" height="130px" width="130px">
+            </button>
+        </div>
 
         <!--Circle Pieces-->
         <app-circle-pieces [color]="player1_Color" [circle_pieces]="player1_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="top left" style="position: absolute;"></app-circle-pieces>
@@ -74,9 +91,10 @@
        
         <!--Center Square-->
         <div class="X_container center-grid">
-            <app-square [square_pieces]="player3_pieces" [square_number]="2034" [square_color]="player3_Color" [selected_piece]="selected_piece" [selected_player]="current_player"  class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
-            <app-square [square_pieces]="player1_pieces" [square_number]="2020" [square_color]="player1_Color" [selected_piece]="selected_piece" [selected_player]="current_player" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(135deg);"></app-square>
-            <app-square [square_pieces]="player2_pieces" [square_number]="2024" [square_color]="player2_Color" [selected_piece]="selected_piece" [selected_player]="current_player" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, -22%) rotate(225deg);"></app-square>
-            <app-square [square_pieces]="player4_pieces" [square_number]="2029" [square_color]="player4_Color" [selected_piece]="selected_piece" [selected_player]="current_player" class="rotate" style="z-index: -1; position: absolute; transform: translate(119%, 48.3%) rotate(315deg);"></app-square>
+            <app-square [square_pieces]="player3_pieces" [square_number]="2034" [square_color]="player3_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
+            <app-square [square_pieces]="player1_pieces" [square_number]="2039" [square_color]="player1_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(135deg);"></app-square>
+            <app-square [square_pieces]="player2_pieces" [square_number]="2024" [square_color]="player2_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, -22%) rotate(225deg);"></app-square>
+            <app-square [square_pieces]="player4_pieces" [square_number]="2029" [square_color]="player4_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(119%, 48.3%) rotate(315deg);"></app-square>
         </div>
     </div>
+

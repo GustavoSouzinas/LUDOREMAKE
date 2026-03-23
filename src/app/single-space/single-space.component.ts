@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Output, Input, EventEmitter} from '@angular/core';
-import { OnInit } from '@angular/core';
+import { Component, Output, Input, EventEmitter, SimpleChanges} from '@angular/core';
+import { OnInit, OnChanges } from '@angular/core';
 import { PieceComponent, single_piece } from "../piece/piece.component";
 
 type Piece = {
     current_pos: number
     id: number
+    player_id: number
     color: string
     disabled: boolean
   }
@@ -19,7 +20,8 @@ let final_counter = 2000
   templateUrl: './single-space.component.html',
   styleUrl: './single-space.component.css'
 })
-export class SingleSpaceComponent implements OnInit {
+export class SingleSpaceComponent implements OnInit, OnChanges {
+  
 
   Style_pieces: Piece[] = []
 
@@ -72,6 +74,10 @@ export class SingleSpaceComponent implements OnInit {
 
   get minWidth(): number{
     return this.local_pieces.length > 9 ? 12:17
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+     
   }
 
   sp_piece_selected_pass(id: number){

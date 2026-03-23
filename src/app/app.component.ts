@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SpacesComponent } from "./spaces/spaces.component";
 import { CirclePiecesComponent } from "./circle-pieces/circle-pieces.component";
 import { SquareComponent } from "./square/square.component";
 import { SingleSpaceComponent } from "./single-space/single-space.component";
 import { PieceComponent, single_piece } from "./piece/piece.component";
+import { CommonModule } from '@angular/common';
+import { WinModalComponent } from "./win-modal/win-modal.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SpacesComponent, CirclePiecesComponent, SquareComponent, SingleSpaceComponent, PieceComponent],
+  imports: [RouterOutlet, SpacesComponent, CirclePiecesComponent, SquareComponent, SingleSpaceComponent, PieceComponent, CommonModule, WinModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -18,12 +20,16 @@ export class AppComponent implements OnInit{
   player3_pieces: single_piece[]=[]
   player4_pieces: single_piece[]=[]
   
-  defined_player:string = "";
+  player_turn:boolean = true
+  defined_player_number:number = 0;
+  defined_player_color:string = "";
   current_player:number = 0;
   selected_piece!:number;
   selected_piece_color: string = "";
   dice_result: number = 0;
-
+  victorious_player: number = 0;
+  show_win: boolean = false;
+  play_dice: boolean = false;
 
   ngOnInit(): void {
     this.initialSetup();
@@ -34,20 +40,28 @@ export class AppComponent implements OnInit{
   }
 
   initialSetup(){
-  const players = ["green","yellow","blue","orange"]
-  this.defined_player = players[Math.floor(Math.random() * players.length)]
+  this.defined_player_number = Math.floor(Math.random() * 4)
+
+  //Futuro refatoramento
+  switch(this.defined_player_number){
+      case 0: this.defined_player_color = "green"; break;
+      case 1: this.defined_player_color = "yellow"; break;
+      case 2: this.defined_player_color = "orange"; break;
+      case 3: this.defined_player_color = "blue"; break;
+    }
 }
 
   Player1_pieces(){
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
+      item.player_id = 0;
       item.final_pos = 45
       item.final_enter = 2015
       item.final_exit = 2019
       item.square_enter = 2039
       item.color = "green"
-      if(item.color===this.defined_player){
+      if(item.player_id===this.defined_player_number){
       item.disabled = false
       }
       item.id++
@@ -61,12 +75,13 @@ export class AppComponent implements OnInit{
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
+      item.player_id = 1
       item.final_pos = 6
       item.final_enter = 2000
       item.final_exit = 2004
       item.square_enter = 2024
       item.color = "yellow"
-       if(item.color===this.defined_player){
+       if(item.player_id===this.defined_player_number){
       item.disabled = false
       }
       item.id++
@@ -80,12 +95,13 @@ export class AppComponent implements OnInit{
   for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
+      item.player_id = 2
       item.final_pos = 32
       item.final_enter = 2010
       item.final_exit = 2014
       item.square_enter = 2034
       item.color = "orange"
-       if(item.color===this.defined_player){
+       if(item.player_id===this.defined_player_number){
       item.disabled = false
       }
       item.id++
@@ -99,12 +115,13 @@ export class AppComponent implements OnInit{
     for(let i=0; i<4; i++){
       const item = new single_piece()
       item.id = i
+      item.player_id = 3
       item.final_pos = 19,
       item.final_enter = 2005,
       item.final_exit = 2009,
       item.square_enter = 2029,
       item.color = "blue"
-      if(item.color===this.defined_player){
+      if(item.player_id===this.defined_player_number){
       item.disabled = false
       }
       item.id++
@@ -135,7 +152,20 @@ if(pieces[this.selected_piece].current_pos > 51){
 }
 }
 
-enterSquare(){
+LockPlayer(){
+const pieces = this.getDefinedPlayerPieces();
+if(this.current_player !== this.defined_player_number){
+  for(let i=0; i < 4; i++){
+  pieces[i].disabled = true
+  }
+}else {
+  for(let i=0; i < 4; i++){
+  pieces[i].disabled = false
+    }
+  }
+}
+
+enterCatwalk(){
 let spaces_left: number;
 const pieces = this.getPlayerPieces();
 if(pieces[this.selected_piece].has_looped === true && pieces[this.selected_piece].current_pos > pieces[this.selected_piece].final_pos){
@@ -149,9 +179,83 @@ if(pieces[this.selected_piece].has_looped === true && pieces[this.selected_piece
 }
 }
 
-  RollDice(){
-   this.dice_result = Math.floor(Math.random() * 6 + 1);
-   this.checkDiceResult();
+PlayTurn(){
+  if(this.show_win != true){
+    this.dice_result = Math.floor(Math.random() * 6 + 1);
+    this.play_dice = true
+    setTimeout(()=> this.TurnStages(), 1200)
+  }
+}
+
+  TurnStages(){
+    this.play_dice = false
+    this.checkDiceResult();
+    
+    setTimeout(() => {
+      if(this.show_win != true){
+        this.NextTurn();
+        this.LockPlayer();
+
+        if(this.current_player !== this.defined_player_number){
+          this.player_turn = false
+          setTimeout(()=> this.EnemyAi(), 800)
+        } else{
+          this.player_turn = true
+        }
+      }
+    })
+  
+  } 
+
+
+  NextTurn(){
+    if (this.dice_result !== 6) {
+    this.current_player = (this.current_player + 1) % 4;
+      }
+  }
+
+  EnemyAi(){
+  this.dice_result = Math.floor(Math.random() * 6 + 1);
+
+  const pieces = this.getPlayerPieces();
+
+  const moveablePieces = pieces.filter(p=> {
+
+  if(p.current_pos === p.square_enter) return false
+
+  if(p.current_pos === 1000 && this.dice_result !== 6) return false
+
+  return true 
+  })
+  
+  if(moveablePieces.length === 0){
+    this.TurnStages()
+    return
+  }
+
+  const randomPiece = moveablePieces[Math.floor(Math.random() *  moveablePieces.length)]
+
+  const index = pieces.indexOf(randomPiece)
+  this.selected_piece = index
+  this.TurnStages();
+  }
+
+  enterSquare(){
+    const pieces = this.getPlayerPieces();
+    if(pieces[this.selected_piece].current_pos > pieces[this.selected_piece].final_exit){
+        pieces[this.selected_piece].current_pos = pieces[this.selected_piece].square_enter
+      }
+  }
+
+  canCatWalk(){
+    let diff: number;
+    const pieces = this.getPlayerPieces();
+        
+    diff = pieces[this.selected_piece].final_exit - pieces[this.selected_piece].current_pos + 1
+
+    if(this.dice_result === diff){
+      pieces[this.selected_piece].current_pos += diff
+      }
   }
 
   checkDiceResult(){
@@ -167,55 +271,31 @@ if(pieces[this.selected_piece].has_looped === true && pieces[this.selected_piece
     if(this.dice_result === 6 && pieces[this.selected_piece].current_pos === 1000){
 
       this.leaveCircle();
-      //executa função
-
 
     // Se estiver fora do circulo
     }else if(pieces[this.selected_piece].current_pos < 1000){
 
-
       this.movePiece();
       this.loopBoard();
-      this.enterSquare();
-
-      //Mudar essa lógica
-      //if(pieces[this.selected_piece].current_pos > 51){
-      //pieces[this.selected_piece].current_pos -= 51
-
+      this.enterCatwalk();
 
       // Se estiver dentro da passarela
       } else if(pieces[this.selected_piece].current_pos>1999){
-      
-      }
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      /*else{
-      pieces[this.selected_piece].current_pos = (pieces[this.selected_piece].current_pos + this.dice_result)
-      console.log(pieces[this.selected_piece].current_pos)
-      //Somando o dado, andando a casa
-      }
 
-      if(pieces[this.selected_piece].current_pos === pieces[this.selected_piece].final_pos){
-        pieces[this.selected_piece].current_pos = pieces[this.selected_piece].final_enter
-      }
-        //Entrando na passarela e quadrado
+        this.canCatWalk();
+        this.enterSquare();  
 
-      if(pieces[this.selected_piece].current_pos === pieces[this.selected_piece].final_exit){
-        pieces[this.selected_piece].current_pos = pieces[this.selected_piece].square_enter
-      }*/
-    }
+      } 
+  }
   
+
+
+  PlayerWon(result: {player: number; isFull: boolean}){
+    const {player, isFull} = result
+    this.victorious_player = result.player
+    this.show_win = result.isFull
+  }
+
 
   selectPiece(id: number){
     this.selected_piece = id - 1
@@ -232,6 +312,16 @@ if(pieces[this.selected_piece].has_looped === true && pieces[this.selected_piece
 
   getPlayerPieces(): single_piece[] {
   switch(this.current_player){
+      case 0: return this.player1_pieces; break;
+      case 1: return this.player2_pieces; break;
+      case 2: return this.player3_pieces; break;
+      case 3: return this.player4_pieces; break;
+      default: return []
+    }
+  }
+
+  getDefinedPlayerPieces(): single_piece[] {
+  switch(this.defined_player_number){
       case 0: return this.player1_pieces; break;
       case 1: return this.player2_pieces; break;
       case 2: return this.player3_pieces; break;
