@@ -17,8 +17,12 @@
    <div class="board test-grid">
         <div *ngIf="player_turn" class="dice-button">
             <button (click)="PlayTurn()" class="dice-button-style">
-            <img *ngIf="!play_dice" src="assets/dice-roll-dice-freeze.png" height="130px" width="130px">    
-            <img *ngIf="play_dice" src="assets/dice-roll-dice.gif" height="130px" width="130px">
+            @if(!play_dice){
+                <img src="assets/dice-roll-dice-freeze.png" animate.leave="leave-dice" height="130px" width="130px">
+            }
+            @if(play_dice){
+                <img src="assets/dice-roll-dice.gif" height="130px" width="130px">
+            }
             </button>
         </div>
 

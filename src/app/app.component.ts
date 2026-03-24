@@ -31,6 +31,7 @@ export class AppComponent implements OnInit{
   show_win: boolean = false;
   play_dice: boolean = false;
 
+
   ngOnInit(): void {
     this.initialSetup();
     this.Player1_pieces();
@@ -42,7 +43,6 @@ export class AppComponent implements OnInit{
   initialSetup(){
   this.defined_player_number = Math.floor(Math.random() * 4)
 
-  //Futuro refatoramento
   switch(this.defined_player_number){
       case 0: this.defined_player_color = "green"; break;
       case 1: this.defined_player_color = "yellow"; break;

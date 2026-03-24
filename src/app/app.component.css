@@ -172,6 +172,24 @@ transform: rotate(-45deg);
     grid-area: center;
 }
 
+@keyframes leaveDice {
+
+    from{
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to{
+    transform: scale(0);
+    opacity: 0;
+    }
+
+}
+
+.leave-dice{
+    animation: LeaveDice 1s ease forwards;
+}
+
 .test-grid{
     display:grid;
     grid-template-areas: 
