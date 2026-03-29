@@ -1,5 +1,12 @@
-<div class="square">
-    <h2> {{victory_player}} won!</h2>
-    <h2>{{HasWon()}}</h2>
+<div animate.enter="popup-modal" class="square">
+    <div class="center-text">
+        <h2 ><span class="outline" [style.color]="victoryPlayer">{{victoryPlayer}}</span>&nbsp;won!</h2>
+        <h2>{{hasWon()}}</h2>
+        <h2>Thanks for playing!<br>Check more of my stuff here:</h2>
+        <a href="https://github.com/GustavoSouzinas">
+            <img title="Visit my GitHub page!" src="assets\github.png" alt="GitHub profile">
+        </a>
+    </div>
+    
 </div>
-<div class="background"></div>
+<div animate.enter="fade-in" class="background"></div>

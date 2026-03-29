@@ -1,22 +1,22 @@
-.square{
-    
+.square {
+
     border: 1px solid black;
     width: 110px;
     height: 110px;
 }
 
 
-.wrapbox{
+.wrapbox {
     display: flex;
     flex-wrap: wrap;
     height: 50px;
     width: 50px;
 }
 
-.piece{
-display: flex;
-flex-wrap: wrap;
-aspect-ratio: 1/1;
-height: 50%;
-transform: rotate(225deg);
+.piece {
+    display: flex;
+    flex-wrap: wrap;
+    aspect-ratio: 1/1;
+    height: 50%;
+    transform: rotate(225deg);
 }

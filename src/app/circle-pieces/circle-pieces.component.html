@@ -3,13 +3,13 @@
     <div class="wrapbox">
         <app-piece
         class="piece"
-        *ngFor="let p of local_pieces"
+        *ngFor="let p of localPieces"
         [id]="p.id"
         [color]="p.color"
         [disabled]="p.disabled"
-        [selected_piece]="selected_piece"
-        [selected_player]="selected_player"
-        (piece_selected)="piece_selected_pass($event)"
-        (player_selected)="player_selected_pass($event)"></app-piece>
+        [selectedPiece]="selectedPiece"
+        [selectedPlayer]="selectedPlayer"
+        (pieceSelected)="pieceSelectedPass($event)"
+        (playerSelected)="playerSelectedPass($event)"></app-piece>
     </div>
 </div>

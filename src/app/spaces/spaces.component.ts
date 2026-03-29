@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { Input,Output,EventEmitter } from '@angular/core';
-import { SingleSpaceComponent, single_space} from "../single-space/single-space.component";
-import { PieceComponent, single_piece  } from "../piece/piece.component";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SingleSpaceComponent, SingleSpace } from "../single-space/single-space.component";
+import { SinglePiece } from "../piece/piece.component";
 
 @Component({
   selector: 'app-spaces',
@@ -13,85 +11,85 @@ import { PieceComponent, single_piece  } from "../piece/piece.component";
 })
 export class SpacesComponent implements OnInit {
 
-first_spaces: single_space[]=[]
-middle_spaces: single_space[]=[]
-last_spaces: single_space[]=[]
+  firstSpaces: SingleSpace[] = []
+  middleSpaces: SingleSpace[] = []
+  lastSpaces: SingleSpace[] = []
 
-@Output() sp_piece_selected = new EventEmitter<number>();
-@Output() sp_player_selected = new EventEmitter<number>();
-@Input() spaces_color = '';
-@Input() selected_piece = 0;
-@Input() selected_player = 0;
-@Input() p1_pieces: single_piece[]=[]
-@Input() p2_pieces: single_piece[]=[]
-@Input() p3_pieces: single_piece[]=[]
-@Input() p4_pieces: single_piece[]=[]
+  @Output() spPieceSelected = new EventEmitter<number>();
+  @Output() spPlayerSelected = new EventEmitter<number>();
+  @Input() spacesColor = '';
+  @Input() selectedPiece = 0;
+  @Input() selectedPlayer = 0;
+  @Input() p1Pieces: SinglePiece[] = []
+  @Input() p2Pieces: SinglePiece[] = []
+  @Input() p3Pieces: SinglePiece[] = []
+  @Input() p4Pieces: SinglePiece[] = []
 
-ngOnInit(): void {
- this.createClassFirstSpaces();
- this.createClassMiddleSpaces();
- this.createClassLastSpaces();
-}
-
-sp_piece_selected_pass(id: number){
-    this.sp_piece_selected.emit(id);
+  ngOnInit(): void {
+    this.createClassFirstSpaces();
+    this.createClassMiddleSpaces();
+    this.createClassLastSpaces();
   }
 
-sp_player_selected_pass(p: number){
-    this.sp_player_selected.emit(p);
+  spPieceSelectedPass(id: number) {
+    this.spPieceSelected.emit(id);
   }
 
-
-createClassLastSpaces(){
-
-  for (let i=0; i<6; i++){
-    const item = new single_space();
-  
-    if(i<6){
-      item.color = this.spaces_color
-    }
-    if(i == 1){
-      item.arrow = true
-      item.color = this.spaces_color
-    }
-    this.last_spaces.push(item)
-  }
-}
-
-createClassFirstSpaces(){
-
-  for (let i=0; i<6; i++){
-    const item = new single_space();
-    if(i<6){
-      item.color = this.spaces_color
-    }
-    if(i == 2){
-    item.star = true
-    item.color = this.spaces_color
-    }
-  this.first_spaces.push(item)
+  spPlayerSelectedPass(p: number) {
+    this.spPlayerSelected.emit(p);
   }
 
 
-}
+  createClassLastSpaces() {
 
-createClassMiddleSpaces(){
-  for (let i=0; i<6; i++){
-    const item = new single_space();
+    for (let i = 0; i < 6; i++) {
+      const item = new SingleSpace();
 
-    if(i<1){
-      item.color = this.spaces_color;
+      if (i < 6) {
+        item.color = this.spacesColor
+      }
+      if (i == 1) {
+        item.arrow = true
+        item.color = this.spacesColor
+      }
+      this.lastSpaces.push(item)
     }
-
-    if(i>0){
-      item.color = "white";
-      item.final_count = true;
-      item.count = false;
-    }
-  this.middle_spaces.push(item);
   }
 
-}
+  createClassFirstSpaces() {
+
+    for (let i = 0; i < 6; i++) {
+      const item = new SingleSpace();
+      if (i < 6) {
+        item.color = this.spacesColor
+      }
+      if (i == 2) {
+        item.star = true
+        item.color = this.spacesColor
+      }
+      this.firstSpaces.push(item)
+    }
+
+
+  }
+
+  createClassMiddleSpaces() {
+    for (let i = 0; i < 6; i++) {
+      const item = new SingleSpace();
+
+      if (i < 1) {
+        item.color = this.spacesColor;
+      }
+
+      if (i > 0) {
+        item.color = "white";
+        item.final_count = true;
+        item.count = false;
+      }
+      this.middleSpaces.push(item);
+    }
+
+  }
 }
 
 

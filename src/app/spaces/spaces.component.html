@@ -3,17 +3,17 @@
     <!--First row-->
      <div class="grid" style="transform: rotate(180deg);">
         <app-single-space class="space" 
-        [show_star]="s.star"
+        [showStar]="s.star"
         [color]="s.color"
-        [p1_pieces]="p1_pieces"
-        [p2_pieces]="p2_pieces"
-        [p3_pieces]="p3_pieces"
-        [p4_pieces]="p4_pieces"
-        [selected_piece]="selected_piece"
-        [selected_player]="selected_player"
-        (sp_piece_selected)="sp_piece_selected_pass($event)"
-        (sp_player_selected)="sp_player_selected_pass($event)"
-        *ngFor="let s of first_spaces" ></app-single-space>
+        [p1Pieces]="p1Pieces"
+        [p2Pieces]="p2Pieces"
+        [p3Pieces]="p3Pieces"
+        [p4Pieces]="p4Pieces"
+        [selectedPiece]="selectedPiece"
+        [selectedPlayer]="selectedPlayer"
+        (spPieceSelected)="spPieceSelectedPass($event)"
+        (spPlayerSelected)="spPlayerSelectedPass($event)"
+        *ngFor="let s of firstSpaces" ></app-single-space>
     </div>
 
     <!--Middle row-->
@@ -22,33 +22,33 @@
         class="space"
         [color]="s.color"
         [count]="s.count"
-        [final_count]="s.final_count"
-        [p1_pieces]="p1_pieces"
-        [p2_pieces]="p2_pieces"
-        [p3_pieces]="p3_pieces"
-        [p4_pieces]="p4_pieces"
-        [selected_piece]="selected_piece"
-        [selected_player]="selected_player"
-        (sp_piece_selected)="sp_piece_selected_pass($event)"
-        (sp_player_selected)="sp_player_selected_pass($event)" 
-        *ngFor="let s of middle_spaces"></app-single-space>
+        [finalCount]="s.final_count"
+        [p1Pieces]="p1Pieces"
+        [p2Pieces]="p2Pieces"
+        [p3Pieces]="p3Pieces"
+        [p4Pieces]="p4Pieces"
+        [selectedPiece]="selectedPiece"
+        [selectedPlayer]="selectedPlayer"
+        (spPieceSelected)="spPieceSelectedPass($event)"
+        (spPlayerSelected)="spPlayerSelectedPass($event)" 
+        *ngFor="let s of middleSpaces"></app-single-space>
     </div>
    
    <!--Last row-->
     <div class="grid">
         <app-single-space 
         class="space" 
-        [show_arrow]="s.arrow" 
-        [color]="spaces_color"
-        [p1_pieces]="p1_pieces"
-        [p2_pieces]="p2_pieces"
-        [p3_pieces]="p3_pieces"
-        [p4_pieces]="p4_pieces"
+        [showArrow]="s.arrow" 
+        [color]="spacesColor"
+        [p1Pieces]="p1Pieces"
+        [p2Pieces]="p2Pieces"
+        [p3Pieces]="p3Pieces"
+        [p4Pieces]="p4Pieces"
         [count]="s.count"
-        [selected_piece]="selected_piece"
-        [selected_player]="selected_player"
-        (sp_piece_selected)="sp_piece_selected_pass($event)" 
-        (sp_player_selected)="sp_player_selected_pass($event)"
-        *ngFor="let s of last_spaces" ></app-single-space>
+        [selectedPiece]="selectedPiece"
+        [selectedPlayer]="selectedPlayer"
+        (spPieceSelected)="spPieceSelectedPass($event)" 
+        (spPlayerSelected)="spPlayerSelectedPass($event)"
+        *ngFor="let s of lastSpaces" ></app-single-space>
     </div>
 </div>

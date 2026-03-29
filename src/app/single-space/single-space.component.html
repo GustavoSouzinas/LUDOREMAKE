@@ -1,22 +1,22 @@
 <div class="space" [style.background-color]="color" >
 
      <!--Position number-->
-     <!--<div style="position: absolute;">{{number}}</div>
-     <div style="position: absolute;">{{final_number}}</div>==>>
+     <div style="position: absolute;">{{number}}</div>
+     <div style="position: absolute;">{{finalNumber}}</div>
      <!--Arrow icon-->
-     <div class="container" style="position: absolute;" *ngIf="show_arrow" >
+     <div class="container" style="position: absolute;" *ngIf="showArrow" >
           <img src="assets/Right_simple_arrow_-_black.svg" 
           style="transform: rotate(90deg);"
-          alt="image"
+          alt="Arrow"
           width="45"
           height="45">
      </div>
 
      <!--Star icon-->
-     <div class="container" style="position: absolute;" *ngIf="show_star">
+     <div class="container" style="position: absolute;" *ngIf="showStar">
           <img src="assets/Five_Pointed_Star_Solid.svg"
           style="transform: rotate(0deg);"
-          alt="image"
+          alt="Star"
           width="50"
           height="50">
      </div>
@@ -24,16 +24,19 @@
      <!--Piece-->
      <div class="container-wrap">
           <app-piece class="item" *ngFor="let p of local_pieces" 
-          (piece_selected)="sp_piece_selected_pass($event)"
-          (player_selected)="sp_player_selected_pass($event)" 
+          (pieceSelected)="sp_piece_selected_pass($event)"
+          (playerSelected)="sp_player_selected_pass($event)" 
           [color]="p.color" 
-          [current_pos]="p.current_pos"
+          [currentPos]="p.currentPos"
           [id]="p.id"
           [disabled]="p.disabled"
-          [selected_piece]="selected_piece"
-          [selected_player]="selected_player"
+          [selectedPiece]="selectedPiece"
+          [selectedPlayer]="selectedPlayer"
           [class.grow]="canGrow"
-          [style.min-width.px]="minWidth"></app-piece>
+          [style.min-width.px]="minWidth"
+          animate.enter="enter-piece"
+          animate.leave="leave-piece">
+          </app-piece>
      </div>
 
 </div>

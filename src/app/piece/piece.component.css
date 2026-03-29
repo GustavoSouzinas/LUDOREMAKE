@@ -12,6 +12,7 @@
     max-width: 52px;
     margin: 0px;
     aspect-ratio: 1;
+    cursor: pointer;
 }
 
 .circle.disabled{

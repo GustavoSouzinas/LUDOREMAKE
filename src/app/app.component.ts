@@ -1,339 +1,393 @@
-import { Component, OnInit} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { SpacesComponent } from "./spaces/spaces.component";
 import { CirclePiecesComponent } from "./circle-pieces/circle-pieces.component";
 import { SquareComponent } from "./square/square.component";
-import { SingleSpaceComponent } from "./single-space/single-space.component";
-import { PieceComponent, single_piece } from "./piece/piece.component";
+import { SinglePiece } from "./piece/piece.component";
 import { CommonModule } from '@angular/common';
 import { WinModalComponent } from "./win-modal/win-modal.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SpacesComponent, CirclePiecesComponent, SquareComponent, SingleSpaceComponent, PieceComponent, CommonModule, WinModalComponent],
+  imports: [SpacesComponent, CirclePiecesComponent, SquareComponent, CommonModule, WinModalComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
-  player1_pieces: single_piece[]=[]
-  player2_pieces: single_piece[]=[]
-  player3_pieces: single_piece[]=[]
-  player4_pieces: single_piece[]=[]
-  
-  player_turn:boolean = true
-  defined_player_number:number = 0;
-  defined_player_color:string = "";
-  current_player:number = 0;
-  selected_piece!:number;
-  selected_piece_color: string = "";
-  dice_result: number = 0;
-  victorious_player: number = 0;
-  show_win: boolean = false;
-  play_dice: boolean = false;
+export class AppComponent implements OnInit {
+  player1Pieces: SinglePiece[] = []
+  player2Pieces: SinglePiece[] = []
+  player3Pieces: SinglePiece[] = []
+  player4Pieces: SinglePiece[] = []
 
+
+  definedPlayerNumber: number = 0;
+  diceResult: number = 0;
+  currentPlayer: number = 0;
+  selectedPiece: number = -1;
+  victoriousPlayer: number = 0;
+  definedPlayerColor: string = "";
+  selectedPieceColor: string = "";
+  playerTurn: boolean = true
+  showWin: boolean = false;
+  playDice: boolean = false;
+  diceRolled: boolean = false;
+  showDiceNumber: boolean = false
+  readonly safePositions = [2, 15, 28, 41];
 
   ngOnInit(): void {
     this.initialSetup();
-    this.Player1_pieces();
-    this.Player2_pieces();
-    this.Player3_pieces();
-    this.Player4_pieces();
+    this.createPlayer1Pieces();
+    this.createPlayer2Pieces();
+    this.createPlayer3Pieces();
+    this.creatPlayer4Pieces();
   }
 
-  initialSetup(){
-  this.defined_player_number = Math.floor(Math.random() * 4)
+  initialSetup() {
+    this.definedPlayerNumber = Math.floor(Math.random() * 4)
 
-  switch(this.defined_player_number){
-      case 0: this.defined_player_color = "green"; break;
-      case 1: this.defined_player_color = "yellow"; break;
-      case 2: this.defined_player_color = "orange"; break;
-      case 3: this.defined_player_color = "blue"; break;
+    switch (this.definedPlayerNumber) {
+      case 0: this.definedPlayerColor = "green"; break;
+      case 1: this.definedPlayerColor = "yellow"; break;
+      case 2: this.definedPlayerColor = "orange"; break;
+      case 3: this.definedPlayerColor = "blue"; break;
     }
-}
+  }
 
-  Player1_pieces(){
-    for(let i=0; i<4; i++){
-      const item = new single_piece()
-      item.id = i
-      item.player_id = 0;
-      item.final_pos = 45
-      item.final_enter = 2015
-      item.final_exit = 2019
-      item.square_enter = 2039
+  createPlayer1Pieces() {
+    for (let i = 0; i < 4; i++) {
+      const item = new SinglePiece()
+      item.id = i + 1
+      item.playerId = 0;
+      item.finalPos = 45
+      item.finalEnter = 2015
+      item.finalExit = 2019
+      item.squareEnter = 2039
       item.color = "green"
-      if(item.player_id===this.defined_player_number){
-      item.disabled = false
+      if (item.playerId === this.definedPlayerNumber) {
+        item.disabled = false
       }
-      item.id++
-      item.current_pos = 1000;
-      item.init_pos = 47
-      this.player1_pieces.push(item)
+      item.currentPos = 1000;
+      item.initPos = 47
+      this.player1Pieces.push(item)
     }
   }
-  
-   Player2_pieces(){
-    for(let i=0; i<4; i++){
-      const item = new single_piece()
-      item.id = i
-      item.player_id = 1
-      item.final_pos = 6
-      item.final_enter = 2000
-      item.final_exit = 2004
-      item.square_enter = 2024
+
+  createPlayer2Pieces() {
+    for (let i = 0; i < 4; i++) {
+      const item = new SinglePiece()
+      item.id = i + 1
+      item.playerId = 1
+      item.finalPos = 6
+      item.finalEnter = 2000
+      item.finalExit = 2004
+      item.squareEnter = 2024
       item.color = "yellow"
-       if(item.player_id===this.defined_player_number){
-      item.disabled = false
+      if (item.playerId === this.definedPlayerNumber) {
+        item.disabled = false
       }
-      item.id++
-      item.current_pos = 1000;
-      item.init_pos = 8
-      this.player2_pieces.push(item)
+      item.currentPos = 1000;
+      item.initPos = 8
+      this.player2Pieces.push(item)
     }
   }
 
-  Player3_pieces(){
-  for(let i=0; i<4; i++){
-      const item = new single_piece()
-      item.id = i
-      item.player_id = 2
-      item.final_pos = 32
-      item.final_enter = 2010
-      item.final_exit = 2014
-      item.square_enter = 2034
+  createPlayer3Pieces() {
+    for (let i = 0; i < 4; i++) {
+      const item = new SinglePiece()
+      item.id = i + 1
+      item.playerId = 2
+      item.finalPos = 32
+      item.finalEnter = 2010
+      item.finalExit = 2014
+      item.squareEnter = 2034
       item.color = "orange"
-       if(item.player_id===this.defined_player_number){
-      item.disabled = false
+      if (item.playerId === this.definedPlayerNumber) {
+        item.disabled = false
       }
-      item.id++
-      item.current_pos = 1000;
-      item.init_pos = 34
-      this.player3_pieces.push(item)
+      item.currentPos = 1000;
+      item.initPos = 34
+      this.player3Pieces.push(item)
     }
   }
 
-  Player4_pieces(){
-    for(let i=0; i<4; i++){
-      const item = new single_piece()
-      item.id = i
-      item.player_id = 3
-      item.final_pos = 19,
-      item.final_enter = 2005,
-      item.final_exit = 2009,
-      item.square_enter = 2029,
+  creatPlayer4Pieces() {
+    for (let i = 0; i < 4; i++) {
+      const item = new SinglePiece()
+      item.id = i + 1
+      item.playerId = 3
+      item.finalPos = 19
+      item.finalEnter = 2005
+      item.finalExit = 2009
+      item.squareEnter = 2029
       item.color = "blue"
-      if(item.player_id===this.defined_player_number){
-      item.disabled = false
+      if (item.playerId === this.definedPlayerNumber) {
+        item.disabled = false
       }
-      item.id++
-      item.current_pos = 1000;
-      item.init_pos = 21
-      this.player4_pieces.push(item)
+      item.currentPos = 1000
+      item.initPos = 21
+      this.player4Pieces.push(item)
     }
   }
 
-leaveCircle(){
-const pieces = this.getPlayerPieces();
-pieces[this.selected_piece].current_pos = pieces[this.selected_piece].init_pos
-}
+  playTurn() {
+    if (!this.showWin && !this.diceRolled) {
+      this.diceResult = Math.floor(Math.random() * 6 + 1);
+      this.diceRolled = true
+      this.playDice = true
 
-movePiece(){
-const pieces = this.getPlayerPieces();
-
- pieces[this.selected_piece].current_pos += this.dice_result
- console.log(pieces[this.selected_piece].current_pos)
-}
-
-loopBoard(){
-const pieces = this.getPlayerPieces();
-
-if(pieces[this.selected_piece].current_pos > 51){
-  pieces[this.selected_piece].current_pos -= 52
-  pieces[this.selected_piece].has_looped = true
-}
-}
-
-LockPlayer(){
-const pieces = this.getDefinedPlayerPieces();
-if(this.current_player !== this.defined_player_number){
-  for(let i=0; i < 4; i++){
-  pieces[i].disabled = true
-  }
-}else {
-  for(let i=0; i < 4; i++){
-  pieces[i].disabled = false
+      setTimeout(() => {
+        this.playDice = false
+        this.showDiceNumber = true
+      }, 820);
     }
   }
-}
 
-enterCatwalk(){
-let spaces_left: number;
-const pieces = this.getPlayerPieces();
-if(pieces[this.selected_piece].has_looped === true && pieces[this.selected_piece].current_pos > pieces[this.selected_piece].final_pos){
+  turnStages() {
 
-  spaces_left = pieces[this.selected_piece].current_pos - pieces[this.selected_piece].final_pos
-
-  const result = pieces[this.selected_piece].final_enter + spaces_left - 1  
-  if(result> pieces[this.selected_piece].final_exit){
-  pieces[this.selected_piece].current_pos = pieces[this.selected_piece].final_exit
-  }else pieces[this.selected_piece].current_pos = result 
-}
-}
-
-PlayTurn(){
-  if(this.show_win != true){
-    this.dice_result = Math.floor(Math.random() * 6 + 1);
-    this.play_dice = true
-    setTimeout(()=> this.TurnStages(), 1200)
-  }
-}
-
-  TurnStages(){
-    this.play_dice = false
     this.checkDiceResult();
-    
-    setTimeout(() => {
-      if(this.show_win != true){
-        this.NextTurn();
-        this.LockPlayer();
 
-        if(this.current_player !== this.defined_player_number){
-          this.player_turn = false
-          setTimeout(()=> this.EnemyAi(), 800)
-        } else{
-          this.player_turn = true
+    setTimeout(() => {
+      if (!this.showWin) {
+        this.nextTurn();
+        this.lockPlayer();
+
+        if (this.currentPlayer !== this.definedPlayerNumber) {
+          this.playerTurn = false
+
+          setTimeout(() => this.enemyAi(), 800)
+        } else {
+          this.playerTurn = true
+          this.selectedPiece = -1
         }
       }
     })
-  
-  } 
+  }
 
+  nextTurn() {
+    if (this.diceResult !== 6) {
+      this.currentPlayer = (this.currentPlayer + 1) % 4;
+    }
+  }
 
-  NextTurn(){
-    if (this.dice_result !== 6) {
-    this.current_player = (this.current_player + 1) % 4;
+  lockPlayer() {
+    const pieces = this.getDefinedPlayerPieces();
+    if (this.currentPlayer !== this.definedPlayerNumber) {
+      for (let i = 0; i < 4; i++) {
+        pieces[i].disabled = true
       }
+    } else {
+      for (let i = 0; i < 4; i++) {
+        pieces[i].disabled = false
+      }
+    }
   }
 
-  EnemyAi(){
-  this.dice_result = Math.floor(Math.random() * 6 + 1);
-
-  const pieces = this.getPlayerPieces();
-
-  const moveablePieces = pieces.filter(p=> {
-
-  if(p.current_pos === p.square_enter) return false
-
-  if(p.current_pos === 1000 && this.dice_result !== 6) return false
-
-  return true 
-  })
-  
-  if(moveablePieces.length === 0){
-    this.TurnStages()
-    return
-  }
-
-  const randomPiece = moveablePieces[Math.floor(Math.random() *  moveablePieces.length)]
-
-  const index = pieces.indexOf(randomPiece)
-  this.selected_piece = index
-  this.TurnStages();
-  }
-
-  enterSquare(){
+  enemyAi() {
+    this.diceResult = Math.floor(Math.random() * 6 + 1);
     const pieces = this.getPlayerPieces();
-    if(pieces[this.selected_piece].current_pos > pieces[this.selected_piece].final_exit){
-        pieces[this.selected_piece].current_pos = pieces[this.selected_piece].square_enter
-      }
-  }
 
-  canCatWalk(){
-    let diff: number;
-    const pieces = this.getPlayerPieces();
-        
-    diff = pieces[this.selected_piece].final_exit - pieces[this.selected_piece].current_pos + 1
+    const moveablePieces = pieces.filter(p => {
 
-    if(this.dice_result === diff){
-      pieces[this.selected_piece].current_pos += diff
-      }
-  }
+      if (p.currentPos === p.squareEnter) return false
 
-  checkDiceResult(){
-    let pieces: single_piece[]=[];
-    switch(this.current_player){
-      case 0: pieces = this.player1_pieces; break;
-      case 1: pieces = this.player2_pieces; break;
-      case 2: pieces = this.player3_pieces; break;
-      case 3: pieces = this.player4_pieces; break;
+      if (p.currentPos === 1000 && this.diceResult !== 6) return false
+
+      return true
+    })
+
+    if (moveablePieces.length === 0) {
+      this.turnStages()
+      return
     }
 
+    const randomPiece = moveablePieces[Math.floor(Math.random() * moveablePieces.length)]
+
+    const index = pieces.indexOf(randomPiece)
+    this.selectedPiece = index
+    this.turnStages();
+  }
+
+  leaveCircle() {
+    const pieces = this.getPlayerPieces();
+    pieces[this.selectedPiece].currentPos = pieces[this.selectedPiece].initPos
+  }
+
+  movePiece() {
+    const pieces = this.getPlayerPieces();
+
+    pieces[this.selectedPiece].currentPos += this.diceResult
+    console.log(pieces[this.selectedPiece].currentPos)
+  }
+
+  loopBoard() {
+    const pieces = this.getPlayerPieces();
+
+    if (pieces[this.selectedPiece].currentPos > 51) {
+      pieces[this.selectedPiece].currentPos -= 52
+      pieces[this.selectedPiece].hasLooped = true
+    }
+  }
+
+
+
+  checkCapture() {
+    const pieces = this.getPlayerPieces();
+    const currentPos = pieces[this.selectedPiece].currentPos;
+
+    if (currentPos === 1000 || currentPos > 1999) return;
+
+    if (this.safePositions.includes(currentPos)) return;
+
+    const allPlayersPieces = [
+      this.player1Pieces,
+      this.player2Pieces,
+      this.player3Pieces,
+      this.player4Pieces,
+    ];
+
+    const enemyEnter = allPlayersPieces
+      .filter(playerPieces => playerPieces !== pieces)
+      .flatMap(playerPieces => playerPieces.filter(p => p.currentPos === currentPos));
+
+    if (enemyEnter.length >= 2) return;
+
+    if (enemyEnter.length === 1) {
+      enemyEnter[0].currentPos = 1000;
+    }
+  }
+
+  enterCatwalk() {
+    let spaces_left: number;
+    const pieces = this.getPlayerPieces();
+    if (pieces[this.selectedPiece].hasLooped === true && pieces[this.selectedPiece].currentPos > pieces[this.selectedPiece].finalPos) {
+
+      spaces_left = pieces[this.selectedPiece].currentPos - pieces[this.selectedPiece].finalPos
+
+      const result = pieces[this.selectedPiece].finalEnter + spaces_left - 1
+      if (result > pieces[this.selectedPiece].finalExit) {
+        pieces[this.selectedPiece].currentPos = pieces[this.selectedPiece].finalExit
+      } else pieces[this.selectedPiece].currentPos = result
+    }
+  }
+
+  enterSquare() {
+    const pieces = this.getPlayerPieces();
+    if (pieces[this.selectedPiece].currentPos > pieces[this.selectedPiece].finalExit) {
+      pieces[this.selectedPiece].currentPos = pieces[this.selectedPiece].squareEnter
+    }
+  }
+
+  canCatWalk() {
+    let diff: number;
+    const pieces = this.getPlayerPieces();
+
+    diff = pieces[this.selectedPiece].finalExit - pieces[this.selectedPiece].currentPos + 1
+
+    if (this.diceResult === diff) {
+      pieces[this.selectedPiece].currentPos += diff
+    }
+  }
+
+  checkDiceResult() {
+    let pieces = this.getPlayerPieces();
+
     //Se estiver dentro do círculo
-    if(this.dice_result === 6 && pieces[this.selected_piece].current_pos === 1000){
+    if (this.diceResult === 6 && pieces[this.selectedPiece].currentPos === 1000) {
 
       this.leaveCircle();
+      this.checkCapture();
 
-    // Se estiver fora do circulo
-    }else if(pieces[this.selected_piece].current_pos < 1000){
+      // Se estiver fora do circulo
+    } else if (pieces[this.selectedPiece].currentPos < 1000) {
 
       this.movePiece();
       this.loopBoard();
       this.enterCatwalk();
+      this.checkCapture();
+
 
       // Se estiver dentro da passarela
-      } else if(pieces[this.selected_piece].current_pos>1999){
+    } else if (pieces[this.selectedPiece].currentPos > 1999) {
 
-        this.canCatWalk();
-        this.enterSquare();  
+      this.canCatWalk();
+      this.enterSquare();
 
-      } 
+    }
   }
-  
 
-
-  PlayerWon(result: {player: number; isFull: boolean}){
-    const {player, isFull} = result
-    this.victorious_player = result.player
-    this.show_win = result.isFull
+  playerWon(result: { player: number; isFull: boolean }) {
+    this.victoriousPlayer = result.player
+    this.showWin = result.isFull
   }
 
 
-  selectPiece(id: number){
-    this.selected_piece = id - 1
-  const pieces = this.getPlayerPieces();
-  this.selected_piece_color = pieces[this.selected_piece].color
-    console.log(this.selected_piece)
+  selectPiece(id: number) {
+    if (!this.diceRolled) return;
+
+    this.selectedPiece = id - 1
+    const pieces = this.getPlayerPieces();
+    this.selectedPieceColor = pieces[this.selectedPiece].color
+
+    this.showDiceNumber = false;
+    this.diceRolled = false;
+    this.turnStages();
+    console.log(this.selectedPiece)
   }
 
-  selectPlayer(p: number){
-    this.current_player = p
-    console.log(this.current_player)
+  selectPlayer(p: number) {
+    this.currentPlayer = p
+    console.log(this.currentPlayer)
   }
 
-
-  getPlayerPieces(): single_piece[] {
-  switch(this.current_player){
-      case 0: return this.player1_pieces; break;
-      case 1: return this.player2_pieces; break;
-      case 2: return this.player3_pieces; break;
-      case 3: return this.player4_pieces; break;
+  getPlayerPieces(): SinglePiece[] {
+    switch (this.currentPlayer) {
+      case 0: return this.player1Pieces;
+      case 1: return this.player2Pieces;
+      case 2: return this.player3Pieces;
+      case 3: return this.player4Pieces;
       default: return []
     }
   }
 
-  getDefinedPlayerPieces(): single_piece[] {
-  switch(this.defined_player_number){
-      case 0: return this.player1_pieces; break;
-      case 1: return this.player2_pieces; break;
-      case 2: return this.player3_pieces; break;
-      case 3: return this.player4_pieces; break;
+  getDefinedPlayerPieces(): SinglePiece[] {
+    switch (this.definedPlayerNumber) {
+      case 0: return this.player1Pieces;
+      case 1: return this.player2Pieces;
+      case 2: return this.player3Pieces;
+      case 3: return this.player4Pieces;
       default: return []
     }
   }
 
+  // FUNÇÃO DEBUG
+  debugSkip() {
+    if (this.showWin) return;
+
+    this.diceResult = Math.floor(Math.random() * 6 + 1);
+
+    const pieces = this.getPlayerPieces();
+
+    const moveablePieces = pieces.filter(p => {
+      if (p.currentPos === p.squareEnter) return false;
+      if (p.currentPos === 1000 && this.diceResult !== 6) return false;
+      return true;
+    });
+
+    if (moveablePieces.length === 0) {
+      this.turnStages();
+      return;
+    }
+
+    const randomPiece = moveablePieces[Math.floor(Math.random() * moveablePieces.length)];
+    this.selectedPiece = pieces.indexOf(randomPiece);
+    this.turnStages();
+  }
+
+  debugDice() {
+    this.diceResult = 6;
+  }
 
 
-
-  title = 'LUDOREMAKE';
+  title = 'LUDO';
   player1_Color = "green"
   player2_Color = "yellow"
   player3_Color = "orange"

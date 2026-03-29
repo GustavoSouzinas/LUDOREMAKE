@@ -1,59 +1,15 @@
-# LUDOREMAKE
+# LUDO GAME MADE IN ANGULAR
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+This is my remake attempt of my Ludo game project, it is fully functional and playable! And you can play it in the github page of this project!
 
-## Development server
+i'll put the url here later...
 
-To start a local development server, run:
+![](public/assets/ludoprint.png)
 
-```bash
-ng serve
-```
+I've got lots to learn yet about coding but this was one of my coolest project yet i made (it's the only one _for now_).
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The jump from simple C++ to the homunculus that is OOP on Typescript is something to get used to, but as long as you're doing it enough times you'll definitely get it someday. 
 
-## Code scaffolding
+If somehow you found this weird project and did not enter the world of Web Development or even simple coding, i highly advise you to start, even though it takes a while to get something right. The biggest issue of learning is comparing your progress to the progress of others, sure; it's fine to raise your own bar, but it's not wise to keep following dreams that are not even your own. There is a reason for everyone here on this planet, and i **hope you excel at your most desired dream**.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

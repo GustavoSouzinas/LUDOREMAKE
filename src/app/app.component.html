@@ -1,63 +1,59 @@
-    <button (click)="PlayTurn()" >{{dice_result}}</button>
+    <button (click)="debugSkip()" >DEBUG: SPAM TO SKIP</button>
+    <button (click)="debugDice()" >DEBUG: DICE ADD 6</button>
     
 
     <div class="text-player">
-        <h2 >You're playing as <span class="outline" [style.color]="defined_player_color">{{defined_player_color}}</span></h2>
-        <h2 *ngIf="player_turn">, it's your turn!</h2>
-        <h2 *ngIf="!player_turn">, the others are playing...</h2>
+        <h2>You're playing as <span class="outline" [style.color]="definedPlayerColor">{{definedPlayerColor}}</span>, <span *ngIf="playerTurn">it's your turn!</span><span *ngIf="!playerTurn">the others are playing...</span></h2>
     </div>
 
 
-    <app-win-modal *ngIf="show_win" class="modal" [input_player]="victorious_player" [defined_player]="defined_player_number"></app-win-modal>
+    <app-win-modal *ngIf="showWin" class="modal" [inputPlayer]="victoriousPlayer" [definedPlayer]="definedPlayerNumber"></app-win-modal>
 
     
 
     
 
    <div class="board test-grid">
-        <div *ngIf="player_turn" class="dice-button">
-            <button (click)="PlayTurn()" class="dice-button-style">
-            @if(!play_dice){
-                <img src="assets/dice-roll-dice-freeze.png" animate.leave="leave-dice" height="130px" width="130px">
-            }
-            @if(play_dice){
-                <img src="assets/dice-roll-dice.gif" height="130px" width="130px">
-            }
+        <div  class="dice-button">
+            <button *ngIf="playerTurn" animate.leave="leave-dice" animate.enter="enter-dice" (click)="playTurn()" class="dice-button-style">
+                <h1 *ngIf="showDiceNumber" animate.enter="dice-number-enter" animate.leave="dice-number-leave" class="dice-number" >{{diceResult}}</h1>
+                <img *ngIf="!playDice" src="assets/dice-roll-dice-freeze.png" height="130px" width="130px" alt="Dice still">            
+                <img [style.display]="playDice ? 'block' : 'none'" src="assets/dice-roll-dice.gif"  height="130px" width="130px" alt="Dice rolling animation">
             </button>
         </div>
 
         <!--Circle Pieces-->
-        <app-circle-pieces [color]="player1_Color" [circle_pieces]="player1_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="top left" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player2_Color" [circle_pieces]="player2_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="top right" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player3_Color" [circle_pieces]="player3_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom left" style="position: absolute;"></app-circle-pieces>
-        <app-circle-pieces [color]="player4_Color" [circle_pieces]="player4_pieces" [selected_piece]="selected_piece" [selected_player]="current_player" (piece_selected)="selectPiece($event)" (player_selected)="selectPlayer($event)" class="bottom right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player1_Color" [circlePieces]="player1Pieces" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (pieceSelected)="selectPiece($event)" (playerSelected)="selectPlayer($event)" class="top left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player2_Color" [circlePieces]="player2Pieces" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (pieceSelected)="selectPiece($event)" (playerSelected)="selectPlayer($event)" class="top right" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player3_Color" [circlePieces]="player3Pieces" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (pieceSelected)="selectPiece($event)" (playerSelected)="selectPlayer($event)" class="bottom left" style="position: absolute;"></app-circle-pieces>
+        <app-circle-pieces [color]="player4_Color" [circlePieces]="player4Pieces" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (pieceSelected)="selectPiece($event)" (playerSelected)="selectPlayer($event)" class="bottom right" style="position: absolute;"></app-circle-pieces>
 
         <!--Top spaces-->
         <div class="top-grid" >
             <app-spaces 
-            [spaces_color]="player2_Color"
-            [p1_pieces]="player1_pieces"
-            [p2_pieces]="player2_pieces"
-            [p3_pieces]="player3_pieces"
-            [p4_pieces]="player4_pieces"
-            [selected_piece]="selected_piece"
-            [selected_player]="current_player"
-            (sp_piece_selected)="selectPiece($event)"
-            (sp_player_selected)="selectPlayer($event)"></app-spaces>
+            [spacesColor]="player2_Color"
+            [p1Pieces]="player1Pieces"
+            [p2Pieces]="player2Pieces"
+            [p3Pieces]="player3Pieces"
+            [p4Pieces]="player4Pieces"
+            [selectedPiece]="selectedPiece"
+            [selectedPlayer]="currentPlayer"
+            (spPieceSelected)="selectPiece($event)"
+            (spPlayerSelected)="selectPlayer($event)"></app-spaces>
         </div>
     
         <!--Right spaces-->
         <div class="right-grid">
             <app-spaces
-            [spaces_color]="player4_Color"
-            [p1_pieces]="player1_pieces"
-            [p2_pieces]="player2_pieces"
-            [p3_pieces]="player3_pieces"
-            [p4_pieces]="player4_pieces"
-            [selected_piece]="selected_piece"
-            [selected_player]="current_player"
-            (sp_piece_selected)="selectPiece($event)"
-            (sp_player_selected)="selectPlayer($event)"
+            [spacesColor]="player4_Color"
+            [p1Pieces]="player1Pieces"
+            [p2Pieces]="player2Pieces"
+            [p3Pieces]="player3Pieces"
+            [p4Pieces]="player4Pieces"
+            [selectedPiece]="selectedPiece"
+            [selectedPlayer]="currentPlayer"
+            (spPieceSelected)="selectPiece($event)"
+            (spPlayerSelected)="selectPlayer($event)"
             class="rotate"
             style="transform: rotate(90deg);"></app-spaces>
         </div>
@@ -65,40 +61,40 @@
         <!--Bottom spaces-->
          <div class="bottom-grid">
             <app-spaces 
-            [spaces_color]="player3_Color"
-            [p1_pieces]="player1_pieces"
-            [p2_pieces]="player2_pieces"
-            [p3_pieces]="player3_pieces"
-            [p4_pieces]="player4_pieces"
-            [selected_piece]="selected_piece"
-            [selected_player]="current_player"
-            (sp_piece_selected)="selectPiece($event)"
-            (sp_player_selected)="selectPlayer($event)"
+            [spacesColor]="player3_Color"
+            [p1Pieces]="player1Pieces"
+            [p2Pieces]="player2Pieces"
+            [p3Pieces]="player3Pieces"
+            [p4Pieces]="player4Pieces"
+            [selectedPiece]="selectedPiece"
+            [selectedPlayer]="currentPlayer"
+            (spPieceSelected)="selectPiece($event)"
+            (spPlayerSelected)="selectPlayer($event)"
             class="rotate" style="transform: rotate(180deg)"></app-spaces>
         </div> 
 
         <!--Left spaces-->
         <div class="left-grid">
             <app-spaces 
-            [spaces_color]="player1_Color"
-            [p1_pieces]="player1_pieces"
-            [p2_pieces]="player2_pieces"
-            [p3_pieces]="player3_pieces"
-            [p4_pieces]="player4_pieces"
-            [selected_piece]="selected_piece"
-            [selected_player]="current_player"
-            (sp_piece_selected)="selectPiece($event)"
-            (sp_player_selected)="selectPlayer($event)"
+            [spacesColor]="player1_Color"
+            [p1Pieces]="player1Pieces"
+            [p2Pieces]="player2Pieces"
+            [p3Pieces]="player3Pieces"
+            [p4Pieces]="player4Pieces"
+            [selectedPiece]="selectedPiece"
+            [selectedPlayer]="currentPlayer"
+            (spPieceSelected)="selectPiece($event)"
+            (spPlayerSelected)="selectPlayer($event)"
             class="rotate"
             style=" transform: rotate(270deg);"></app-spaces>
         </div>
        
         <!--Center Square-->
         <div class="X_container center-grid">
-            <app-square [square_pieces]="player3_pieces" [square_number]="2034" [square_color]="player3_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
-            <app-square [square_pieces]="player1_pieces" [square_number]="2039" [square_color]="player1_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(135deg);"></app-square>
-            <app-square [square_pieces]="player2_pieces" [square_number]="2024" [square_color]="player2_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, -22%) rotate(225deg);"></app-square>
-            <app-square [square_pieces]="player4_pieces" [square_number]="2029" [square_color]="player4_Color" [selected_piece]="selected_piece" [selected_player]="current_player" (full)="PlayerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(119%, 48.3%) rotate(315deg);"></app-square>
+            <app-square [squarePieces]="player3Pieces" [squareNumber]="2034" [squareColor]="player3_Color" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (full)="playerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, 119%) rotate(45deg);"></app-square>
+            <app-square [squarePieces]="player1Pieces" [squareNumber]="2039" [squareColor]="player1_Color" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (full)="playerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(-22%, 48.3%) rotate(135deg);"></app-square>
+            <app-square [squarePieces]="player2Pieces" [squareNumber]="2024" [squareColor]="player2_Color" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (full)="playerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(48.5%, -22%) rotate(225deg);"></app-square>
+            <app-square [squarePieces]="player4Pieces" [squareNumber]="2029" [squareColor]="player4_Color" [selectedPiece]="selectedPiece" [selectedPlayer]="currentPlayer" (full)="playerWon($event)" class="rotate" style="z-index: -1; position: absolute; transform: translate(119%, 48.3%) rotate(315deg);"></app-square>
         </div>
     </div>
 

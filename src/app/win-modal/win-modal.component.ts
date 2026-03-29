@@ -9,25 +9,25 @@ import { Component, Input, OnInit } from '@angular/core';
 export class WinModalComponent implements OnInit{
 
 ngOnInit(): void {
-  this.ShowPlayer();
+  this.showPlayer();
 }
-@Input() defined_player = 0;
-@Input() input_player = 0;
+@Input() definedPlayer = 0;
+@Input() inputPlayer = 0;
 
-victory_player = "";
+victoryPlayer = "";
 
-  ShowPlayer(){
-    switch(this.input_player){
-          case 0: this.victory_player = "green"; break;
-          case 1: this.victory_player = "yellow"; break;
-          case 2: this.victory_player = "orange"; break
-          case 3: this.victory_player = "blue"; break;
-          default: this.victory_player = "";
+  showPlayer(){
+    switch(this.inputPlayer){
+          case 0: this.victoryPlayer = "Green"; break;
+          case 1: this.victoryPlayer = "Yellow"; break;
+          case 2: this.victoryPlayer = "Orange"; break
+          case 3: this.victoryPlayer = "Blue"; break;
+          default: this.victoryPlayer = "";
     }  
   }
 
-  HasWon(){
-    if(this.input_player === this.defined_player){
+  hasWon(){
+    if(this.inputPlayer === this.definedPlayer){
     return "You've WON! Congrats!"
     } else {
       return "You've LOST! Nice try..."

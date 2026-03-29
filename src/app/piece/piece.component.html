@@ -1,4 +1,3 @@
-
-    <div class="circle" (click)="selectPiece(id)" [style.background-color]="color" [class.disabled]="disabled" [class.selected]="IsSelected">
-        <div class="numberCircle">{{id}}</div>
-    </div>
+<div class="circle" (click)="selectPiece(id)" (keydown)="selectPiece(id)" [style.background-color]="color" [class.disabled]="disabled" [class.selected]="IsSelected">
+    <div class="numberCircle">{{id}}</div>
+</div>

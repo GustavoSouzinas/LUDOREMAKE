@@ -1,4 +1,4 @@
-.circle{
+.circle {
     justify-content: center;
     align-items: center;
     position: relative;
@@ -10,7 +10,7 @@
     width: 200px;
 }
 
-.piece{
+.piece {
     display: flex;
     flex-wrap: wrap;
     height: 50%;
@@ -19,48 +19,48 @@
     justify-content: center;
 }
 
-.margintopleft{
+.margintopleft {
 
     margin-top: 10px;
     margin-left: 10px;
 }
 
-.margintopright{
+.margintopright {
 
     margin-top: 10px;
     margin-right: 10px;
 }
 
-.marginbottomleft{
+.marginbottomleft {
 
     margin-bottom: 10px;
     margin-left: 10px;
 }
 
-.marginbottomright{
+.marginbottomright {
 
     margin-bottom: 10px;
     margin-right: 10px;
 }
 
-.top{
+.top {
     margin-top: 10px;
 }
 
-.bottom{
+.bottom {
     margin-bottom: 10px;
 }
 
-.left{
+.left {
     margin-left: 10px;
 }
 
-.right{
+.right {
     margin-right: 10px;
 }
 
 
-.wrapbox{
+.wrapbox {
     display: flex;
     flex-wrap: wrap;
     height: 150px;

@@ -1,21 +1,84 @@
-.square{
+.square {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transform-origin: top top;
     z-index: 7;
-    height: 400px;
-    width: 500px;
+    height: 60vw;
+    width: 78vw;
+    max-height: 350px;
+    max-width: 500px;
     background-color: white;
     opacity: 0.85;
     border: 1px solid black;
     border-radius: 50px;
 }
 
-.background{
-    
+.background {
+
     height: 100vh;
     width: 100vw;
     background-color: black;
     opacity: 0.5;
+}
+
+.center-text {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+img {
+    width: clamp(10px, 11vw, 90px);
+    height: clamp(10px, 11vw, 90px);
+}
+
+h2 {
+    text-align: center;
+    font-size: clamp(0.1rem, 4.5vw, 1.5rem);
+}
+
+@keyframes PopupModal {
+
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+
+    40% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        opacity: 0.85;
+    }
+
+}
+
+@keyframes FadeIn {
+
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+
+}
+
+.popup-modal {
+    animation: PopupModal 0.8s ease-out;
+}
+
+.fade-in {
+    animation: FadeIn 0.8s ease-out;
+}
+
+.outline {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

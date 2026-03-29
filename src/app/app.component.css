@@ -1,42 +1,9 @@
-.flexRow{
-
-    height: 155px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-.container{
-    border: 1px black solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-}
-
-.dice-button{
+.dice-button {
     left: calc(50% - 550px);
     position: absolute;
 }
 
-@media (max-width: 1100px){
-
-.dice-button{
-    left: calc(50% - 75px);
-    transform: translateY(475px);
-    position: absolute;
-}
-}
-
-.scree-space{
-    height: 1080px;
-    width: 1920px;
-    background-color: aqua;
-}
-
-.modal{
+.modal {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -44,18 +11,20 @@
     z-index: 7;
 }
 
-.text-player{
-display: flex;
-justify-content: center;
+.text-player {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    width: vw;
 }
 
-.dice-button-style{
+.dice-button-style {
     background: none;
     border: none;
     border-radius: 20%;
 }
 
-.circle_piece{
+.circle_piece {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -67,7 +36,7 @@ justify-content: center;
     margin: 12px;
 }
 
-.circle{
+.circle {
 
     position: relative;
     display: flex;
@@ -78,24 +47,30 @@ justify-content: center;
     width: 200px;
 }
 
-.flexCol{
+.flexCol {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.background{
+.background {
     z-index: -1;
 
 }
 
-.rotate{
-transform: rotate(90deg);
-transform-origin: center;
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.board{
-    
+.rotate {
+    transform: rotate(90deg);
+    transform-origin: center;
+}
+
+.board {
+
 
     margin: auto;
 
@@ -103,13 +78,54 @@ transform-origin: center;
     border-radius: 10%;
 }
 
+.dice-number {
+    width: 100%;
+    position: absolute;
+    margin: auto;
+    --dice-y: -50px;
+    transform: translateY(var(--dice-y));
+    font-size: 2.5rem;
+}
 
-.X_container{
+@keyframes DiceNumberEnter {
+
+    to {
+        transform: translateY(var(--dice-y)) rotate(0deg);
+    }
+
+    from {
+        transform: translateY(var(--dice-y)) rotate(-360deg);
+    }
+}
+
+@keyframes DiceNumberLeave {
+    0% {
+        transform: translateY(var(--dice-y)) scale(1);
+    }
+
+    30% {
+        transform: translateY(var(--dice-y)) scale(1.2);
+    }
+
+    100% {
+        transform: translateY(var(--dice-y)) scale(0);
+    }
+}
+
+.dice-number-enter {
+    animation: DiceNumberEnter 0.3s ease-out;
+}
+
+.dice-number-leave {
+    animation: DiceNumberLeave 0.3s ease-out;
+}
+
+.X_container {
     width: 220px;
     height: 220px;
 }
 
-.line{
+.line {
 
     position: absolute;
     width: 220px;
@@ -119,91 +135,143 @@ transform-origin: center;
     top: 50%;
 }
 
-.line1{
-transform: rotate(45deg);
+.line1 {
+    transform: rotate(45deg);
 }
 
-.line2{
-transform: rotate(-45deg);
+.line2 {
+    transform: rotate(-45deg);
 }
 
-.outline{
+.outline {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 
-.top{
+.top {
     top: 0px;
     margin-top: 50px;
 }
 
-.bottom{
+.bottom {
     bottom: 0px;
     margin-bottom: 50px;
 }
 
-.left{
+.left {
     left: 0px;
     margin-left: 50px;
 }
 
-.right{
+.right {
     right: 0px;
     margin-right: 50px;
 }
 
-.top-grid{
+.top-grid {
     grid-area: top;
 }
 
-.bottom-grid{
+.bottom-grid {
     grid-area: bottom;
 }
 
-.right-grid{
+.right-grid {
     grid-area: right;
 }
 
-.left-grid{
+.left-grid {
     grid-area: left;
 }
 
-.center-grid{
+.center-grid {
     grid-area: center;
 }
 
-@keyframes leaveDice {
+@keyframes LeaveDice {
 
-    from{
+    from {
         transform: scale(1);
         opacity: 1;
     }
 
-    to{
-    transform: scale(0);
-    opacity: 0;
+    to {
+        transform: scale(0);
+        opacity: 0;
     }
 
 }
 
-.leave-dice{
-    animation: LeaveDice 1s ease forwards;
+.leave-dice {
+    animation: LeaveDice 0.5s ease-in-out;
 }
 
-.test-grid{
-    display:grid;
-    grid-template-areas: 
-    "top top top"
-    "left center right"
-    "bottom bottom bottom";
+@keyframes EnterDice {
+
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+.enter-dice {
+    animation: EnterDice 0.5s ease-in-out;
+}
+
+.test-grid {
+    display: grid;
+    grid-template-areas:
+        "top top top"
+        "left center right"
+        "bottom bottom bottom";
     place-items: center;
-    width:800px;
+    width: 800px;
     height: 800px;
     grid-template-rows: auto 157px auto;
     grid-template-columns: auto 157px auto;
     position: relative;
 }
 
-app-spaces{
+app-spaces {
     display: block;
+}
+
+
+@media (max-width: 800px) {
+    .dice-number {
+        --dice-y: 130px;
+    }
+
+    .dice-button {
+        left: calc(50% - 75px);
+        transform: translateY(475px);
+        position: absolute;
+    }
+
+    .test-grid {
+        transform: scale(calc(48vw / 400px));
+        transform-origin: top left;
+        margin-bottom: -440px;
+        left: calc(50vw - (800px * (50vw / 400px)/ 2));
+    }
+
+
+}
+
+@media (max-width: 1100px) {
+    .dice-number {
+        --dice-y: 130px;
+    }
+
+    .dice-button {
+        left: calc(50% - 75px);
+        transform: translateY(475px);
+        position: absolute;
+    }
 }
