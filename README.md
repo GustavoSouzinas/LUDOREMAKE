@@ -2,7 +2,7 @@
 
 This is my remake attempt of my Ludo game project, it is fully functional and playable! And you can play it in the github page of this project!
 
-i'll put the url here later...
+[Play it by yourself!](https://gustavosouzinas.github.io/LUDOREMAKE/)
 
 ![](public/assets/ludoprint.png)
 

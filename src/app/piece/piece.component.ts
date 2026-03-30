@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 export class PieceComponent {
 
   @Output() pieceSelected = new EventEmitter<number>();
-  @Output() playerSelected = new EventEmitter<number>();
 
   @Input() id: number = 0;
   @Input() currentPos: number = 0;
@@ -25,15 +24,6 @@ export class PieceComponent {
 
   selectPiece(id: number) {
     this.pieceSelected.emit(id);
-
-    switch (this.color) {
-      case "green": this.currentPlayer = 0; this.playerColor = "green"; break;
-      case "yellow": this.currentPlayer = 1; this.playerColor = "yellow"; break;
-      case "orange": this.currentPlayer = 2; this.playerColor = "orange"; break
-      case "blue": this.currentPlayer = 3; this.playerColor = "blue"; break;
-    }
-
-    this.playerSelected.emit(this.currentPlayer);
   }
 
   get IsSelected(): boolean {
