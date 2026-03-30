@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
 
   initialSetup() {
     this.definedPlayerNumber = Math.floor(Math.random() * 4)
-
+    this.currentPlayer = this.definedPlayerNumber
     switch (this.definedPlayerNumber) {
       case 0: this.definedPlayerColor = "green"; break;
       case 1: this.definedPlayerColor = "yellow"; break;
@@ -129,6 +129,7 @@ export class AppComponent implements OnInit {
   }
 
   playTurn() {
+    if (this.currentPlayer !== this.definedPlayerNumber) return;
     if (!this.showWin && !this.diceRolled) {
       this.diceResult = Math.floor(Math.random() * 6 + 1);
       this.diceRolled = true
@@ -137,6 +138,20 @@ export class AppComponent implements OnInit {
       setTimeout(() => {
         this.playDice = false
         this.showDiceNumber = true
+
+        const pieces = this.getPlayerPieces();
+        const hasMoveable = pieces.some(p => {
+          if (p.currentPos === p.squareEnter) return false;
+          if (p.currentPos === 1000 && this.diceResult !== 6) return false;
+          return true;
+        });
+
+        if (!hasMoveable) {
+          setTimeout(() => {
+            this.selectPiece(1)
+          },600);
+        }
+
       }, 820);
     }
   }
@@ -333,10 +348,7 @@ export class AppComponent implements OnInit {
     console.log(this.selectedPiece)
   }
 
-  selectPlayer(p: number) {
-    this.currentPlayer = p
-    console.log(this.currentPlayer)
-  }
+ 
 
   getPlayerPieces(): SinglePiece[] {
     switch (this.currentPlayer) {

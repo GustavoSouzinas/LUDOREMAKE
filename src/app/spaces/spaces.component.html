@@ -12,7 +12,6 @@
         [selectedPiece]="selectedPiece"
         [selectedPlayer]="selectedPlayer"
         (spPieceSelected)="spPieceSelectedPass($event)"
-        (spPlayerSelected)="spPlayerSelectedPass($event)"
         *ngFor="let s of firstSpaces" ></app-single-space>
     </div>
 
@@ -29,8 +28,7 @@
         [p4Pieces]="p4Pieces"
         [selectedPiece]="selectedPiece"
         [selectedPlayer]="selectedPlayer"
-        (spPieceSelected)="spPieceSelectedPass($event)"
-        (spPlayerSelected)="spPlayerSelectedPass($event)" 
+        (spPieceSelected)="spPieceSelectedPass($event)" 
         *ngFor="let s of middleSpaces"></app-single-space>
     </div>
    
@@ -48,7 +46,6 @@
         [selectedPiece]="selectedPiece"
         [selectedPlayer]="selectedPlayer"
         (spPieceSelected)="spPieceSelectedPass($event)" 
-        (spPlayerSelected)="spPlayerSelectedPass($event)"
         *ngFor="let s of lastSpaces" ></app-single-space>
     </div>
 </div>

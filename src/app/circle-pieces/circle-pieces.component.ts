@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 export class CirclePiecesComponent {
 
   @Output() pieceSelected = new EventEmitter<number>()
-  @Output() playerSelected = new EventEmitter<number>()
   @Input() color = '';
   @Input() circlePieces: SinglePiece[] = [];
   @Input() selectedPiece = 0;
@@ -19,10 +18,6 @@ export class CirclePiecesComponent {
 
   pieceSelectedPass(id: number) {
     this.pieceSelected.emit(id);
-  }
-
-  playerSelectedPass(p: number) {
-    this.playerSelected.emit(p);
   }
 
   get localPieces() {

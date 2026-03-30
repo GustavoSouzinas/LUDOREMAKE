@@ -24,8 +24,7 @@
      <!--Piece-->
      <div class="container-wrap">
           <app-piece class="item" *ngFor="let p of local_pieces" 
-          (pieceSelected)="sp_piece_selected_pass($event)"
-          (playerSelected)="sp_player_selected_pass($event)" 
+          (pieceSelected)="sp_piece_selected_pass($event)" 
           [color]="p.color" 
           [currentPos]="p.currentPos"
           [id]="p.id"

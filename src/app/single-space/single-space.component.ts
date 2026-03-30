@@ -41,7 +41,6 @@ export class SingleSpaceComponent implements OnInit {
   }
 
   @Output() spPieceSelected = new EventEmitter<number>();
-  @Output() spPlayerSelected = new EventEmitter<number>();
   @Input() color: string = "";
   @Input() showStar: boolean = false;
   @Input() showArrow: boolean = false;
@@ -82,9 +81,6 @@ export class SingleSpaceComponent implements OnInit {
     this.spPieceSelected.emit(id);
   }
 
-  sp_player_selected_pass(p: number) {
-    this.spPlayerSelected.emit(p);
-  }
 }
 
 export class SingleSpace {

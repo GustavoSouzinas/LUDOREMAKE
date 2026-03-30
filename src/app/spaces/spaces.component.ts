@@ -16,7 +16,6 @@ export class SpacesComponent implements OnInit {
   lastSpaces: SingleSpace[] = []
 
   @Output() spPieceSelected = new EventEmitter<number>();
-  @Output() spPlayerSelected = new EventEmitter<number>();
   @Input() spacesColor = '';
   @Input() selectedPiece = 0;
   @Input() selectedPlayer = 0;
@@ -33,10 +32,6 @@ export class SpacesComponent implements OnInit {
 
   spPieceSelectedPass(id: number) {
     this.spPieceSelected.emit(id);
-  }
-
-  spPlayerSelectedPass(p: number) {
-    this.spPlayerSelected.emit(p);
   }
 
 
